@@ -1,0 +1,34 @@
+<resources>
+
+    <!--Ejercicio 1-->
+
+
+    <string name="app_name">Tarea1</string>
+    <string name="one">uno</string>
+    <string name="two">dos</string>
+    <string name="three">tres</string>
+    <string name="four">cuatro</string>
+    <string name="five">cinco</string>
+
+
+    <!--Ejercicio 2-->
+
+    <string name="pizza">Pizza</string>
+    <string name="hamburger">Hamburger</string>
+    <string name="taco">Taco</string>
+    <string name="ice_scream">Ice cream</string>
+    <string name="cake">Cake</string>
+    
+    
+    <!--Ejercicio 3-->
+    
+    <string name="sentence">Si puedes imaginarlo, puedes programarlo</string>
+    <string name="ok">Aceptar</string>
+    <string name="cancel">Cancel</string>
+
+
+    <!--Ejercicio 8_1-->
+    <string name="hello_world">Hello world</string>
+
+
+</resources>
