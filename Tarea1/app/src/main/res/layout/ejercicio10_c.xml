@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- IMPORTANTE: Antes de probar el codigo de abajo, recordar aniadir la siguiente linea
+al archivo build.gradle(Module:app): implementation 'com.android.support:design:28.0.0'
+
+ El ultimo numero indica la version del API en mi caso es la 28
+
+ -->
+
+<com.google.android.material.tabs.TabLayout
+
+
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/tabs"
+
+    >
+
+
+
+    <com.google.android.material.tabs.TabItem
+
+        android:text="@string/tab1"/>
+    <com.google.android.material.tabs.TabItem
+
+        android:text= "@string/tab2"/>
+    <com.google.android.material.tabs.TabItem
+
+        android:text="@string/tab3"/>
+
+    <com.google.android.material.tabs.TabItem
+        android:text="@string/tab4"
+        />
+
+
+
+</com.google.android.material.tabs.TabLayout>
