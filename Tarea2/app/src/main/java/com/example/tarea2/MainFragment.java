@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class MainFragment extends Fragment {
@@ -41,6 +42,8 @@ public class MainFragment extends Fragment {
         mAddBtn=(Button) v.findViewById(R.id.btn_add);
         mSubstractBtn = (Button)v.findViewById(R.id.btn_substract);
         mMultiplyBtn = (Button) v.findViewById(R.id.btn_multiply);
+        mClearBtn = (Button) v.findViewById(R.id.btn_clear);
+
 
         mNum1 = (EditText) v.findViewById(R.id.etxt_num1);
         mNum2 = (EditText)v.findViewById(R.id.etxt_num2);
@@ -98,7 +101,12 @@ public class MainFragment extends Fragment {
             }
         });
 
-
+        mClearBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearAll();
+            }
+        });
 
 
 
@@ -144,10 +152,11 @@ public class MainFragment extends Fragment {
 
         } else {
 
-            int year = new GregorianCalendar().YEAR;
+            int year = new GregorianCalendar().get(Calendar.YEAR);
+            int birthYear = year-result;
 
             output = new StringBuilder().append(getString(R.string.output_result1)+ "" +
-                    "("+ output+")" + getString(R.string.output_result2) +" ("+year+")").toString();
+                    "("+ result+")" + getString(R.string.output_result2) +" ("+birthYear+")").toString();
         }
 
 
@@ -157,6 +166,13 @@ public class MainFragment extends Fragment {
 
 
 
+    }
+
+
+    private void clearAll(){
+        mOutputTxt.setText("");
+        mNum1.setText("");
+        mNum2.setText("");
     }
 
 }
