@@ -22,16 +22,30 @@ al archivo build.gradle(Module:app): implementation 'com.android.support:design:
 
     <com.google.android.material.tabs.TabItem
 
-        android:text="@string/tab1"/>
+        android:text="@string/tab1"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+
+        />
     <com.google.android.material.tabs.TabItem
 
-        android:text= "@string/tab2"/>
+        android:text= "@string/tab2"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        />
     <com.google.android.material.tabs.TabItem
 
+
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
         android:text="@string/tab3"/>
 
     <com.google.android.material.tabs.TabItem
+
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
         android:text="@string/tab4"
+
         />
 
 

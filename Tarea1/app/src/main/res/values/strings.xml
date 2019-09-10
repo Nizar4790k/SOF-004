@@ -22,9 +22,11 @@
     
     <!--Ejercicio 3-->
     
-    <string name="sentence">Si puedes imaginarlo, puedes programarlo</string>
+    <string name="sentence">Si puedes imaginarlo, puedes programarlo.</string>
+    <string name="sentence2">Nos hemos convertido en el fruto de nuestros pensamientos.</string>
     <string name="ok">Aceptar</string>
-    <string name="cancel">Cancel</string>
+    <string name="cancel">Cancelar</string>
+
 
 
     <!--Ejercicio 8_1-->
