@@ -170,7 +170,7 @@ public class MainFragment extends Fragment {
 
 
     private void clearAll(){
-        mOutputTxt.setText("");
+        mOutputTxt.setText(R.string.output_default);
         mNum1.setText("");
         mNum2.setText("");
     }
