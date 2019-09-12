@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Lab1</string>
+    <string name="give_me_number">Insert a number</string>
+</resources>
