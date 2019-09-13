@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -52,12 +53,21 @@ public class MainFragment extends Fragment {
 
 
 
+
         mAddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                int num1 = Integer.parseInt(mNum1.getText().toString());
-                int num2 = Integer.parseInt(mNum2.getText().toString());
+                String txtNum1 =mNum1.getText().toString();
+                String txtNum2 = mNum2.getText().toString();
+
+                if(areEmpty(txtNum1,txtNum2)){
+                    return;
+                }
+
+
+                int num1 = Integer.parseInt(txtNum1);
+                int num2 = Integer.parseInt(txtNum2);
 
                 int sum = add(num1,num2);
 
@@ -72,8 +82,15 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                int num1 = Integer.parseInt(mNum1.getText().toString());
-                int num2 = Integer.parseInt(mNum2.getText().toString());
+                String txtNum1 =mNum1.getText().toString();
+                String txtNum2 = mNum2.getText().toString();
+
+                if(areEmpty(txtNum1,txtNum2)){
+                    return;
+                }
+
+                int num1 = Integer.parseInt(txtNum1);
+                int num2 = Integer.parseInt(txtNum2);
 
                 int diference = substract(num1,num2);
 
@@ -87,8 +104,16 @@ public class MainFragment extends Fragment {
         mMultiplyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int num1 = Integer.parseInt(mNum1.getText().toString());
-                int num2 = Integer.parseInt(mNum2.getText().toString());
+
+                String txtNum1 =mNum1.getText().toString();
+                String txtNum2 = mNum2.getText().toString();
+
+                if(areEmpty(txtNum1,txtNum2)){
+                    return;
+                }
+
+                int num1 = Integer.parseInt(txtNum1);
+                int num2 = Integer.parseInt(txtNum2);
 
                 int product = multiply(num1,num2);
 
@@ -168,9 +193,21 @@ public class MainFragment extends Fragment {
 
     }
 
+    private boolean areEmpty(String txtNum1,String txtNum2){
+
+
+        if(txtNum1.equals("")|| txtNum2.equals("") ){
+            Toast.makeText(getContext(),R.string.field_empty,Toast.LENGTH_SHORT).show();
+
+            return true;
+        } else {
+            return false;
+        }
+
+    }
 
     private void clearAll(){
-        mOutputTxt.setText("");
+        mOutputTxt.setText(R.string.output_default);
         mNum1.setText("");
         mNum2.setText("");
     }
