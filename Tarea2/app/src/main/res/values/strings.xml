@@ -13,6 +13,7 @@
 
     <string name="give_number">Tap me and give me a number</string>
     <string name="give_number1">Tap me and give another number</string>
+    <string name="field_empty">The fields MUST NOT be empty</string>
 
 
 </resources>
