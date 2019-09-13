@@ -9,11 +9,13 @@
     <string name="output_not_calculated">The output cannot be calculated</string>
     <string name= "output_result1">Date of birth of the age</string>
     <string name="output_result2">is</string>
-    <string name="output_default">The output will displayed here</string>
+    <string name="output_default">The date will displayed here</string>
+    <string name="result_default">The result will displayed here</string>
 
     <string name="give_number">Tap me and give me a number</string>
     <string name="give_number1">Tap me and give another number</string>
     <string name="field_empty">The fields MUST NOT be empty</string>
+    <string name="display_result">Result: </string>
 
 
 </resources>

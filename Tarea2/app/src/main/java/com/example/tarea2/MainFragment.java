@@ -29,8 +29,8 @@ public class MainFragment extends Fragment {
     private EditText mNum1;
     private EditText mNum2;
 
-    private TextView mOutputTxt;
-
+    private TextView mDateTxt;
+    private TextView mResultTxt;
 
 
     @Nullable
@@ -49,8 +49,8 @@ public class MainFragment extends Fragment {
         mNum1 = (EditText) v.findViewById(R.id.etxt_num1);
         mNum2 = (EditText)v.findViewById(R.id.etxt_num2);
 
-        mOutputTxt = (TextView) v.findViewById(R.id.txt_output);
-
+        mDateTxt = (TextView) v.findViewById(R.id.txt_date);
+        mResultTxt = (TextView) v.findViewById(R.id.txt_result);
 
 
 
@@ -71,7 +71,7 @@ public class MainFragment extends Fragment {
 
                 int sum = add(num1,num2);
 
-                updateOutput(sum);
+                updateOuput(sum);
 
 
             }
@@ -94,7 +94,7 @@ public class MainFragment extends Fragment {
 
                 int diference = substract(num1,num2);
 
-                updateOutput(diference);
+                updateOuput(diference);
 
 
 
@@ -117,7 +117,7 @@ public class MainFragment extends Fragment {
 
                 int product = multiply(num1,num2);
 
-                updateOutput(product);
+                updateOuput(product);
 
 
 
@@ -167,25 +167,31 @@ public class MainFragment extends Fragment {
     }
 
 
-    private void updateOutput(int result){
+    private void updateOuput(int result){
 
-        String output=null;
+        String date=null;
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(getResources().getString(R.string.display_result));
+        sb.append(result);
+
+        mResultTxt.setText(sb.toString());
 
         if(result<0){
 
-            output =  getString(R.string.output_not_calculated);
+            date =  getString(R.string.output_not_calculated);
 
         } else {
 
             int year = new GregorianCalendar().get(Calendar.YEAR);
             int birthYear = year-result;
 
-            output = new StringBuilder().append(getString(R.string.output_result1)+ "" +
+            date = new StringBuilder().append(getString(R.string.output_result1)+ "" +
                     "("+ result+")" + getString(R.string.output_result2) +" ("+birthYear+")").toString();
         }
 
 
-        mOutputTxt.setText(output);
+        mDateTxt.setText(date);
 
 
 
@@ -207,9 +213,10 @@ public class MainFragment extends Fragment {
     }
 
     private void clearAll(){
-        mOutputTxt.setText(R.string.output_default);
+        mDateTxt.setText(R.string.output_default);
         mNum1.setText("");
         mNum2.setText("");
+        mResultTxt.setText(R.string.result_default);
     }
 
 }
