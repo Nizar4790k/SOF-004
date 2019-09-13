@@ -175,7 +175,7 @@ public class MainFragment extends Fragment {
         sb.append(getResources().getString(R.string.display_result));
         sb.append(result);
 
-        mResultTxt.setText(sb.toString());
+        mResultTxt.setText(sb.toString()); // Seting text to result
 
         if(result<0){
 
