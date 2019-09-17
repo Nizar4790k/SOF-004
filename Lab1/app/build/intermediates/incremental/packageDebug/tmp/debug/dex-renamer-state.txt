@@ -1,0 +1,4 @@
+#Thu Sep 12 16:46:38 BOT 2019
+base.0=/home/Nizar4790k/SOF-004/Lab1/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
