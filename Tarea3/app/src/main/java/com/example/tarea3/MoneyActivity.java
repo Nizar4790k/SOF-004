@@ -6,20 +6,17 @@ import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 
-public class MoneyActivity extends AppCompatActivity {
+public class MoneyActivity extends SingleFragmentActivity {
+
+    @Override
+    protected Fragment createFragment() {
+        return new MoneyFragment();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(R.id.fragment_money_container);
-
-        if(fragment==null){
-            fragment = new MoneyFragment();
-            fm.beginTransaction()
-                    .add(R.id.fragment_money_container,fragment).commit();
-        }
 
 
     }

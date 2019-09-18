@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Tarea3</string>
+    <string name="money_hint">Enter the desired quantity of money</string>
+    <string name="exit_btn">Get out of the app</string>
+
+    <string name="bill_count">%1$s %2$s(s) of %3$s %4$s</string>
+
+    <string name="coin">coin</string>
+    <string name="bill">bill</string>
+
+    <string name="tutorial1">Tap back, home or menu button to calculate the money.
+    \n  Use volume down key to clear the fields.</string>
+
+
+
 </resources>
