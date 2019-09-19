@@ -11,6 +11,8 @@
     <string name="tutorial1">Tap back, home or menu button to calculate the money.
     \n  Use volume down key to clear the fields.</string>
 
+    <string name="empty_field">The field MUST NOT be empty</string>
+
 
 
 </resources>

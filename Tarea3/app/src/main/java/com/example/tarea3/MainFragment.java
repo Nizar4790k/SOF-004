@@ -51,42 +51,25 @@ public class MainFragment extends Fragment  {
         btnExit = (Button) view.findViewById(R.id.btn_exit);
 
 
-        /*
+
         btnExit.setOnLongClickListener( new View.OnLongClickListener(){
 
             @Override
             public boolean onLongClick(View v) {
 
-     Activity mainActivity =getActivity();
+                Activity mainActivity =getActivity();
                 mainActivity.finish();
                 mainActivity.moveTaskToBack(true);
 
                 return false;
             }
         });
-         */
 
-        btnExit.setOnTouchListener(new View.OnTouchListener() {
+        String value = getEditText().getText().toString();
+        if (!value.equals(null) && !value.equals("")){
+            mTextView.setText(generateReport(Integer.parseInt(value)));
+        }
 
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch(event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        // Start
-                        break;
-                    case MotionEvent.ACTION_UP:
-
-                        // End
-                        Activity mainActivity =getActivity();
-                        mainActivity.finish();
-                        mainActivity.moveTaskToBack(true);
-
-                        break;
-                }
-                return false;
-            }
-        });
 
 
         return view;
@@ -95,19 +78,13 @@ public class MainFragment extends Fragment  {
     }
 
 
+     String generateReport(int quantity){
 
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-
-/*
-    private String generateReport(int quantity){
-
-        int  [] bills = {100,50,20,10,5};
-        int  billCount[] = new int [5];// pos 0= 100 bils, pos 1 = 50 bills, pos 2= 20 bills,
+        final String [] type= {getResources().getString(R.string.bill),
+                getResources().getString(R.string.coin)};
+        final String [] unit = {"$","¢"};
+        final int  [] bills = {100,50,20,10,5};
+        int  billCount[] = new int [5];// pos 0= 100 bills, pos 1 = 50 bills, pos 2= 20 bills,
         // pos 3 = 10 cents, pos 4 = 5 cent
 
         for(int i=0;i<billCount.length;i++){
@@ -117,18 +94,37 @@ public class MainFragment extends Fragment  {
 
         do{
 
-
-            if(quantity%100==0){
+            if(quantity>=100){
                 quantity-=100;
                 billCount[0]++;
-            } else if (quantity%50==0){
+            } else if (quantity>=50){
                 quantity-=50;
                 billCount[1]++;
 
-            } else if (quantity%20==0){
+            } else if (quantity>=20){
                 quantity-=20;
                 billCount[2]++;
+            }else {
+
+                quantity*=100;
+
+                if(quantity>=10){
+                    quantity-=10;
+                    billCount[3]+=10;
+
+                } else if(quantity>=5){
+                    quantity-=5;
+                    billCount[4]+=20;
+
+                }
+
+                quantity/=100;
             }
+
+
+
+
+
 
 
         }while (quantity!=0);
@@ -143,7 +139,11 @@ public class MainFragment extends Fragment  {
             String count = String.valueOf(billCount[i]);
             String bill = String.valueOf(bills[i]);
 
-            String line = getResources().getString(R.string.bill_count,count,bill);
+            String line = i<3 ? getResources().getString(R.string.bill_count,count,type[0],bill,unit[0])
+                    :getResources().getString(R.string.bill_count,count,type[1],bill,unit[1]);
+
+
+
 
             sb.append(line + "\n");
 
@@ -153,6 +153,16 @@ public class MainFragment extends Fragment  {
 
         return  sb.toString();
     }
-*/
+
+
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+
+
 
 }
