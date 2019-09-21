@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class MainFragment extends Fragment implements CompoundButton.OnCheckedChangeListener {
+public class MainFragment extends Fragment implements CompoundButton.OnClickListener {
 
    private CheckBox mCheckBoxMusic;
    private CheckBox mCheckBoxCar;
@@ -36,11 +36,11 @@ public class MainFragment extends Fragment implements CompoundButton.OnCheckedCh
         mImageView = view.findViewById(R.id.imageView);
 
 
-        mCheckBoxMusic.setOnCheckedChangeListener(this);
-        mCheckBoxCar.setOnCheckedChangeListener(this);
+        mCheckBoxMusic.setOnClickListener(this);
+        mCheckBoxCar.setOnClickListener(this);
 
-        mCheckBoxPerson.setOnCheckedChangeListener(this);
-        mCheckBoxStreet.setOnCheckedChangeListener(this);
+        mCheckBoxPerson.setOnClickListener(this);
+        mCheckBoxStreet.setOnClickListener(this);
 
 
 
@@ -55,26 +55,30 @@ public class MainFragment extends Fragment implements CompoundButton.OnCheckedCh
     }
 
     @Override
-    public void onCheckedChanged(CompoundButton button,boolean isChecked) {
+    public void onClick(View view) {
 
-        boolean isCarSelected = mCheckBoxCar.isSelected();
-        boolean isStreetSelected = mCheckBoxStreet.isSelected();
-        boolean isMusicSelected = mCheckBoxMusic.isSelected();
-        boolean isPersonSelected = mCheckBoxPerson.isSelected();
+        boolean isCarSelected = mCheckBoxCar.isChecked();
+        boolean isStreetSelected = mCheckBoxStreet.isChecked();
+        boolean isMusicSelected = mCheckBoxMusic.isChecked();
+        boolean isPersonSelected = mCheckBoxPerson.isChecked();
+
 
 
         if(!(isCarSelected && isStreetSelected && isMusicSelected && isPersonSelected)){
 
-
+            mImageView.setImageResource(R.drawable.blank);
 
         }
+
 
         if(isCarSelected && isStreetSelected && isMusicSelected && isPersonSelected){
 
-
-
+            mImageView.setImageResource(R.drawable.street_music_car_person);
+            return;
 
         }
+
+
         //------------------
 
         if(isCarSelected){
@@ -128,12 +132,15 @@ public class MainFragment extends Fragment implements CompoundButton.OnCheckedCh
         }
 
         if(isStreetSelected && isPersonSelected){
-
+            mImageView.setImageResource(R.drawable.street_person);
         }
 
 
 
         if(isMusicSelected && isPersonSelected){
+
+            mImageView.setImageResource(R.drawable.person_music);
+
 
         }
 
@@ -142,20 +149,29 @@ public class MainFragment extends Fragment implements CompoundButton.OnCheckedCh
 
         if(isPersonSelected && isCarSelected && isMusicSelected){
 
+            mImageView.setImageResource(R.drawable.person_music_car);
+
         }
 
         if(isPersonSelected && isCarSelected && isStreetSelected){
+
+            mImageView.setImageResource(R.drawable.person_car_street);
 
         }
 
 
         if (isMusicSelected && isStreetSelected && isPersonSelected){
 
+            mImageView.setImageResource(R.drawable.music_street_person);
+
         }
 
         if (isMusicSelected && isStreetSelected && isCarSelected){
 
+            mImageView.setImageResource(R.drawable.music_street_car);
+
         }
+
 
 
 
