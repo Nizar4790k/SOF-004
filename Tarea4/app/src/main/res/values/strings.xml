@@ -5,5 +5,11 @@
     <string name="music">Music</string>
     <string name="person">Person</string>
     <string name="street">Street</string>
+    <string name="about">About the developer</string>
+    <string name="name">Name: Nizar Sanchez </string>
+    <string name="id">ID: 2018-6482 </string>
+    <string name="ok">OK</string>
+
+
     
 </resources>

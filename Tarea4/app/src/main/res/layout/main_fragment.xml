@@ -41,6 +41,13 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="336dp"
-        tools:srcCompat="@tools:sample/avatars[2]" />
+        />
+
+    <Button
+        android:id="@+id/btn_about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_about"
+        android:text="@string/about" />
 </LinearLayout>
 ></ScrollView>
