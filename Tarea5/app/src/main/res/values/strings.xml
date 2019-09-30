@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Tarea5</string>
+
+    <string name="name_hint">Enter your name here</string>
+    <string name="step_text">Next Step</string>
+
+    <string name="bello">el mas bello</string>
+    <string name="mejor">el mejor</string>
+    <string name="inteligente"> el inteligente</string>
+    <string name="habil">el habil</string>
+    <string name="grande">el grande</string>
+
+    <string name="home">Get back home</string>
+
+    <string name="sentence">Hola soy %1$s %2$s y te invito a comer un mango maracaton clasico como el campeon.
+        Si no lo pudiste ver, ven para que lo veas mejor. </string>
+
+    <string name="share">SHARE</string>
+
+</resources>
