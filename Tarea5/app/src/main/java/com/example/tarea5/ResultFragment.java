@@ -17,8 +17,11 @@ import androidx.fragment.app.Fragment;
 
 public class ResultFragment extends Fragment {
 
+    private String mName;
+
     private TextView mTextView;
-    private Button mButton;
+    private Button mButtonHome;
+    private Button mButtonList;
 
     @Nullable
     @Override
@@ -31,15 +34,30 @@ public class ResultFragment extends Fragment {
 
         mTextView.setText(getSentence());
 
-        mButton = view.findViewById(R.id.btn_home);
+        mButtonHome = view.findViewById(R.id.btn_home);
+        mButtonList = view.findViewById(R.id.btn_list);
 
-        mButton.setOnClickListener(new View.OnClickListener() {
+        mButtonList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(),ListActivity.class);
+
+                i.putExtra(MainFragment.NAME,mName);
+
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+                getActivity().finish();
+            }
+        });
+
+        mButtonHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getContext(),MainActivity.class);
 
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
+                getActivity().finish();
             }
         });
 
@@ -63,10 +81,10 @@ public class ResultFragment extends Fragment {
     }
 
     private  String getSentence(){
-        String name = getActivity().getIntent().getStringExtra(MainFragment.NAME);
+         mName = getActivity().getIntent().getStringExtra(MainFragment.NAME);
         String adjective = getActivity().getIntent().getStringExtra(ListFragment.ADJECTIVE);
 
-        String sentence = getResources().getString(R.string.sentence,name,adjective);
+        String sentence = getResources().getString(R.string.sentence,mName,adjective);
 
         return sentence;
 
