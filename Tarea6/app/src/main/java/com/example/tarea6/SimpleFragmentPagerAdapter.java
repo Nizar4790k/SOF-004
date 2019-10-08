@@ -23,18 +23,18 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
 
         switch (position){
-            case 1:
+            case 0:
                 return new HomeFragment();
+
+            case 1:
+
+                return new RegisterFragment();
 
             case 2:
 
-                return null;
+                return new ContactFragment();
 
-            case 3:
-
-                return null;
-
-            case 4: return null;
+            case 3: return new MusicFragment();
 
             default:
                 return  new HomeFragment();

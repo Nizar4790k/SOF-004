@@ -4,4 +4,25 @@
     <string name="registry">Registry</string>
     <string name="favorites_song">Favorite songs</string>
     <string name="contact">Contact</string>
+    <string name="next">Next</string>
+    
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    
+    <string name="user">User</string>
+    <string name="password">Password</string>
+    <string name="text_login"> Default user: user \nDefault password: 1234
+    </string>
+
+    <string name="log_in">Log in</string>
+    <string name="text_welcome">Welcome %1$s %2$s</string>
+    <string name="name">Name: Nizar Sanchez</string>
+    <string name="id">ID: 2018-6482</string>
+    <string name="career">Career: Software Development</string>
+
+    <string name="about_app">About the app: This is the best app in the world</string>
+    <string name="song">Song: %1$s</string>
+    <string name="artist">Artist: %1$s</string>
+
+    
 </resources>

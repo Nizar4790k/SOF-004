@@ -27,6 +27,11 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home,container,false);
 
+        mVideoView  = view.findViewById(R.id.video_view);
+
+        Uri uri = Uri.parse("android.resource://"+getActivity().getPackageName()+"/"+R.raw.intro);
+        mVideoView.setVideoURI(uri);
+        mVideoView.start();
 
 
         return view;

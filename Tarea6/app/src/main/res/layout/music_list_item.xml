@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/text_view_name_music"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/about_app" />
+        android:text="TextView"
+        android:textSize="18sp" />
 
-    <VideoView
-        android:id="@+id/video_view"
+    <TextView
+        android:id="@+id/text_view_artist"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="18sp" />
 </LinearLayout>
