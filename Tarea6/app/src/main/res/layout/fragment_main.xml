@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.viewpager.widget.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+
+    >
+
+    <com.google.android.material.tabs.TabLayout android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <com.google.android.material.tabs.TabItem
+
+            android:text="@string/home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <com.google.android.material.tabs.TabItem
+
+            android:text="@string/registry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <com.google.android.material.tabs.TabItem
+
+            android:text="@string/contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            />
+        <com.google.android.material.tabs.TabItem
+
+            android:text="@string/favorites_song"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            />
+
+    </com.google.android.material.tabs.TabLayout>
+
+
+
+</androidx.viewpager.widget.ViewPager>
+
+
+

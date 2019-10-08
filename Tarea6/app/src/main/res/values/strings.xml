@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Tarea6</string>
+    <string name="home">Home</string>
+    <string name="registry">Registry</string>
+    <string name="favorites_song">Favorite songs</string>
+    <string name="contact">Contact</string>
+</resources>
