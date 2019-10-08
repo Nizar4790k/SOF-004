@@ -16,14 +16,17 @@ public class HomeFragment extends Fragment {
 
     private VideoView mVideoView;
 
+
+    public HomeFragment(){
+
+    }
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home,null,false);
+        View view = inflater.inflate(R.layout.fragment_home,container,false);
 
-        mVideoView = view.findViewById(R.id.videoView);
-
-        Uri uri = Uri.parse("android.resource://"+getActivity().getPackageName()+"/"ge)
 
 
         return view;
