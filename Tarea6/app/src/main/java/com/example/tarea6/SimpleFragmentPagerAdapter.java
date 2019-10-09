@@ -12,6 +12,7 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
     private Context mContext;
     private  int mTotalTabs;
 
+
     public SimpleFragmentPagerAdapter(FragmentManager fm, Context context, int tab) {
         super(fm);
         mContext = context;
@@ -24,6 +25,7 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
 
         switch (position){
             case 0:
+
                 return new HomeFragment();
 
             case 1:
@@ -37,7 +39,7 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
             case 3: return new MusicFragment();
 
             default:
-                return  new HomeFragment();
+                return  null;
 
 
         }

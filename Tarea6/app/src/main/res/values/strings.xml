@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">Tarea6</string>
+
     <string name="home">Home</string>
     <string name="registry">Registry</string>
     <string name="favorites_song">Favorite songs</string>
     <string name="contact">Contact</string>
+
     <string name="next">Next</string>
     
     <string name="first_name">First name</string>
@@ -23,6 +25,17 @@
     <string name="about_app">About the app: This is the best app in the world</string>
     <string name="song">Song: %1$s</string>
     <string name="artist">Artist: %1$s</string>
+
+    <string name="passed">You have changed to the tab:</string>
+    <string name="wrong">The user or the password are wrong</string>
+
+    <string name="ok">OK</string>
+
+    <string name="success">You have been already registred</string>
+    <string name="empty_fields">The fields must NOT be empty</string>
+
+
+    
 
     
 </resources>
