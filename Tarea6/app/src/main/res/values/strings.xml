@@ -22,7 +22,7 @@
     <string name="id">ID: 2018-6482</string>
     <string name="career">Career: Software Development</string>
 
-    <string name="about_app">About the app: This is the best app in the world</string>
+    <string name="about_app">About the app: This app was developed by Nizar Sanchez and tested in API 19</string>
     <string name="song">Song: %1$s</string>
     <string name="artist">Artist: %1$s</string>
 
