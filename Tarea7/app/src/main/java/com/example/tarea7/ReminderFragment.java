@@ -21,6 +21,7 @@ public class ReminderFragment extends Fragment {
 
     private static final String CREATE_OR_UPDATE_REMINDER = "com.example.tarea7.CreateOrUpdate";
     private static final String DATE_PICKER="DialogDate";
+    private static final int REQUEST_DATE=0;
 
 
     private Button mDateButton;
@@ -28,12 +29,17 @@ public class ReminderFragment extends Fragment {
     private EditText mTitleEditText;
     private CheckBox mDoneCheckBox;
 
-    private Date mDateSelected;
+    private Reminder mReminder;
+
+
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_reminder, null, false);
+
+
 
 
         mTitleEditText = view.findViewById(R.id.edit_text_title);
@@ -44,11 +50,20 @@ public class ReminderFragment extends Fragment {
         Intent intent = getActivity().getIntent();
 
 
+        String title = mTitleEditText.getText().toString();
+        boolean isDone = mDoneCheckBox.isChecked();
+
+        mReminder = new Reminder(title,new Date(),isDone);
+
         mDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
                 FragmentManager fm = getFragmentManager();
-                DatePickerFragment dialog = new DatePickerFragment();
+                DatePickerFragment dialog = DatePickerFragment.newInstance(mReminder.getDate());
+                dialog.setTargetFragment(ReminderFragment.this,REQUEST_DATE);
                 dialog.show(fm,DATE_PICKER);
 
                 //Pick the date;
@@ -64,11 +79,9 @@ public class ReminderFragment extends Fragment {
 
 
                 if(mCreateOrUpdateButton.getText().equals(createReminder)){
+                    mReminder.setTitle(mTitleEditText.getText().toString());
+                    mReminder.setDone(mDoneCheckBox.isChecked());
 
-                    String title = mTitleEditText.getText().toString();
-                    boolean isDone = mDoneCheckBox.isChecked();
-
-                    Reminder reminder = new Reminder(title,mDateSelected,isDone);
 
                     //Create Reminder
 
@@ -100,8 +113,18 @@ public class ReminderFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
+        if (requestCode==REQUEST_DATE){
+            Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
+            mReminder.setDate(date);
+            updateDate();
+
+        }
 
 
 
+    }
+
+    private void updateDate(){
+        mDateButton.setText(mReminder.getDate().toString());
     }
 }

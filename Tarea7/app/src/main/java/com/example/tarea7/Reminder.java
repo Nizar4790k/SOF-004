@@ -1,14 +1,24 @@
 package com.example.tarea7;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class Reminder {
 
     private String mTitle;
     private Date  mDate;
     private boolean mIsDone;
+    private UUID mUUID;
 
     public Reminder(String title, Date date, boolean isDone) {
+        mUUID=UUID.randomUUID();
+        mTitle = title;
+        mDate = date;
+        mIsDone = isDone;
+    }
+
+    public Reminder(String title, Date date, boolean isDone,UUID id) {
+        mUUID=id;
         mTitle = title;
         mDate = date;
         mIsDone = isDone;
