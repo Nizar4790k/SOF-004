@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Tarea7</string>
+    <string name="new_reminder">NEW REMINDER</string>
+    <string name="delete_reminder">DELETE REMINDER</string>
+    <string name="title_hint">Enter the reminder"'"s title </string>
+    <string name="button_date">Pick date</string>
+    <string name="checkbox_done">Done</string>
+    <string name="button_add">Add</string>
+    <string name="button_update">Update</string>
+    <string name="button_ok">OK</string>
+</resources>

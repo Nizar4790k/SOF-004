@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/edit_text_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/title_hint"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/button_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_calendar"
+        android:text="@string/button_date" />
+
+    <CheckBox
+        android:id="@+id/check_box_done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/checkbox_done" />
+
+    <Button
+        android:id="@+id/button_create_or_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
