@@ -9,4 +9,14 @@
 
 
         />
+
+    <item android:title="@string/reminder_for_today"
+        android:icon="@drawable/ic_reminder"
+        android:id="@+id/today_reminder"
+        app:showAsAction="ifRoom|withText"
+
+
+        />
+
+
 </menu>

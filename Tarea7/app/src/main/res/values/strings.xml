@@ -8,4 +8,8 @@
     <string name="button_add">Add</string>
     <string name="button_update">Update</string>
     <string name="button_ok">OK</string>
+    <string name="reminder_title">Title: %1$d</string>
+    <string name="reminder_date">Date: %1$d</string>
+    <string name="empty_crimes">There are no reminders added,tap the button to add a reminder. </string>
+    <string name="reminder_for_today">Show reminders for today</string>
 </resources>

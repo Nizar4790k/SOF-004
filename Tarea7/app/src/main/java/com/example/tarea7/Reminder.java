@@ -1,5 +1,7 @@
 package com.example.tarea7;
 
+import androidx.annotation.NonNull;
+
 import java.util.Date;
 import java.util.UUID;
 
@@ -17,11 +19,8 @@ public class Reminder {
         mIsDone = isDone;
     }
 
-    public Reminder(String title, Date date, boolean isDone,UUID id) {
+    public Reminder(UUID id) {
         mUUID=id;
-        mTitle = title;
-        mDate = date;
-        mIsDone = isDone;
     }
 
     public void setTitle(String title) {
@@ -44,7 +43,19 @@ public class Reminder {
         return mDate;
     }
 
+    public UUID getUUID() {
+        return mUUID;
+    }
+
     public boolean isDone() {
         return mIsDone;
+    }
+
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Title:"+getTitle()+ "\n"
+                +"Date: "+getDate().toString();
     }
 }

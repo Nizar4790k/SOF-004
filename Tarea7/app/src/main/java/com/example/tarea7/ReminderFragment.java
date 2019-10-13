@@ -4,11 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,11 +20,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class ReminderFragment extends Fragment {
 
     private static final String CREATE_OR_UPDATE_REMINDER = "com.example.tarea7.CreateOrUpdate";
     private static final String DATE_PICKER="DialogDate";
+    private static final String REMINDER_ID="com.example.tarea7.ReminderId";
     private static final int REQUEST_DATE=0;
 
 
@@ -28,8 +34,9 @@ public class ReminderFragment extends Fragment {
     private Button mCreateOrUpdateButton;
     private EditText mTitleEditText;
     private CheckBox mDoneCheckBox;
-
+    private boolean mIsCreateMode;
     private Reminder mReminder;
+    private ReminderLab mReminderLab;
 
 
 
@@ -40,6 +47,7 @@ public class ReminderFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_reminder, null, false);
 
 
+        mReminderLab = ReminderLab.getInstance(getContext());
 
 
         mTitleEditText = view.findViewById(R.id.edit_text_title);
@@ -51,9 +59,18 @@ public class ReminderFragment extends Fragment {
 
 
         String title = mTitleEditText.getText().toString();
-        boolean isDone = mDoneCheckBox.isChecked();
 
-        mReminder = new Reminder(title,new Date(),isDone);
+        String buttonText = intent.getStringExtra(CREATE_OR_UPDATE_REMINDER);
+
+        mIsCreateMode = buttonText.equals(getString(R.string.button_add));
+        mCreateOrUpdateButton.setText(buttonText);
+
+
+
+
+
+
+        mReminder = new Reminder(title,new Date(),false);
 
         mDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,22 +92,66 @@ public class ReminderFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                boolean createReminder = mCreateOrUpdateButton.getText().equals(getString(R.string.button_add));
 
 
-                if(mCreateOrUpdateButton.getText().equals(createReminder)){
-                    mReminder.setTitle(mTitleEditText.getText().toString());
-                    mReminder.setDone(mDoneCheckBox.isChecked());
 
 
+                if(mIsCreateMode){
                     //Create Reminder
+
+                    mReminder.setTitle(mTitleEditText.getText().toString());
+                    mReminder.setDone(false);
+                   mReminderLab.addReminder(mReminder);
+
+
+
 
                 }else{
                     //Update Reminder
+
+                    boolean isDone = mDoneCheckBox.isChecked();
+                    String  title = mTitleEditText.getText().toString();
+
+                    mReminder.setDone(isDone);
+                    mReminder.setTitle(title);
+
+                    mReminderLab.updateReminder(mReminder);
+
+
+
+
                 }
+
+
+
+
+                getBack();
+
             }
         });
 
+
+        if(mIsCreateMode){
+            mDoneCheckBox.setVisibility(View.INVISIBLE);
+            setHasOptionsMenu(false);
+            mCreateOrUpdateButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_button_add,0,0,0);
+        }
+        else {
+                mDoneCheckBox.setVisibility(View.VISIBLE);
+                String id = intent.getStringExtra(REMINDER_ID);
+
+
+                mReminder = ReminderLab.getInstance(getContext()).getReminder(UUID.fromString(id));
+
+                mDoneCheckBox.setChecked(mReminder.isDone());
+                mDateButton.setText(mReminder.getDate().toString());
+                mTitleEditText.setText(mReminder.getTitle());
+
+                mCreateOrUpdateButton.setText(R.string.button_update);
+            mCreateOrUpdateButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_button_update,0,0,0);
+            setHasOptionsMenu(true);
+
+        }
 
 
 
@@ -102,10 +163,18 @@ public class ReminderFragment extends Fragment {
     }
 
 
-    public static Intent createOrUpdateIntent(Context context,String buttonText){
+    public static Intent createOrUpdateIntent(Context context,String buttonText,String id){
 
         Intent intent = new Intent(context,ReminderActivity.class);
         intent.putExtra(CREATE_OR_UPDATE_REMINDER,buttonText);
+
+        if(!id.equals("")){
+            intent.putExtra(REMINDER_ID,id);
+        }else {
+            return intent;
+        }
+
+
         return intent;
 
     }
@@ -127,4 +196,44 @@ public class ReminderFragment extends Fragment {
     private void updateDate(){
         mDateButton.setText(mReminder.getDate().toString());
     }
+
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_reminder,menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+
+            case R.id.delete_reminder:
+                mReminderLab.deleteReminder(mReminder);
+                getBack();
+
+                return  true;
+
+
+        default:
+            return super.onOptionsItemSelected(item);
+
+
+        }
+
+
+
+
+    }
+
+    private void getBack(){
+        Intent i=new Intent(getContext(), MainActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
+    }
+
+
+
+
 }
