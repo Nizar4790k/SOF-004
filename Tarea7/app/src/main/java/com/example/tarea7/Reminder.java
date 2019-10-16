@@ -55,7 +55,7 @@ public class Reminder {
     @NonNull
     @Override
     public String toString() {
-        return "Title:"+getTitle()+ "\n"
+        return "Title: "+getTitle()+ "\n"
                 +"Date: "+getDate().toString();
     }
 }

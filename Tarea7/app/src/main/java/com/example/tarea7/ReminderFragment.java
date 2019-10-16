@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -120,6 +121,7 @@ public class ReminderFragment extends Fragment {
 
 
 
+
                 }
 
 
@@ -144,7 +146,7 @@ public class ReminderFragment extends Fragment {
                 mReminder = ReminderLab.getInstance(getContext()).getReminder(UUID.fromString(id));
 
                 mDoneCheckBox.setChecked(mReminder.isDone());
-                mDateButton.setText(mReminder.getDate().toString());
+                mDateButton.setText(DateFormat.getDateInstance().format(mReminder.getDate()));
                 mTitleEditText.setText(mReminder.getTitle());
 
                 mCreateOrUpdateButton.setText(R.string.button_update);
@@ -194,7 +196,7 @@ public class ReminderFragment extends Fragment {
     }
 
     private void updateDate(){
-        mDateButton.setText(mReminder.getDate().toString());
+        mDateButton.setText(DateFormat.getDateInstance().format(mReminder.getDate()));
     }
 
 
