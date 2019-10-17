@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Tarea8</string>
+    <string name="sport_cars">Sport cars</string>
+    <string name="sedan_cars">Sedan cars</string>
+    <string name="all_terrain_cars">All terrain cars</string>
+</resources>
