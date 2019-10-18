@@ -20,6 +20,10 @@ public abstract class Vehicle  {
         this.mModel = model;
     }
 
+    public Vehicle(){
+
+    }
+
 
     public Brand getVehicleBrand() {
         return mVehicleBrand;

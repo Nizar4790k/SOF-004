@@ -2,9 +2,9 @@ package com.example.tarea8;
 
 import androidx.fragment.app.Fragment;
 
-public class BrandActivity extends SingleFragmentActivity {
+public class VehicleActivity extends SingleFragmentActivity {
     @Override
     protected Fragment createFragment() {
-        return new BrandFragment();
+        return null;
     }
 }

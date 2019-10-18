@@ -1,7 +1,5 @@
 package com.example.tarea8;
 
-import java.util.List;
-
 public class CarFactory  {
 
     private static CarFactory sCarFactory;
@@ -23,13 +21,44 @@ public class CarFactory  {
 
 
 
-    public List<SportVehicle> getSportVehicles(){
 
-        List<SportVehicle>
+
+
+    public Vehicle getVehicle(VehicleType vehicleType){
+
+
+
+
+        switch (vehicleType){
+            case SPORTVEHICLE:
+                return new SportVehicle();
+
+            case SEDAMVEHICLE:
+                return new SedanVehicle();
+
+            case  ALLTERRAINVEHICLE:
+                return new AllTerrainVehicle();
+
+
+                default: return null;
+
+        }
+
+
+
+
+
+    }
+
+    public enum VehicleType {
+
+        SPORTVEHICLE,SEDAMVEHICLE,ALLTERRAINVEHICLE
 
 
     }
 
 
-
 }
+
+
+

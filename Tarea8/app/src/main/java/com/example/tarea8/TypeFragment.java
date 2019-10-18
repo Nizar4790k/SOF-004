@@ -67,6 +67,7 @@ public class TypeFragment extends Fragment {
 
         private ImageView mImageView;
         private TextView mTextView;
+        private int mName;
 
        public TypeHolder(LayoutInflater inflater, ViewGroup group){
 
@@ -81,14 +82,26 @@ public class TypeFragment extends Fragment {
         @Override
         public void onClick(View v) {
 
-            Intent intent = BrandFragment.getIntent(mTextView.getText().toString(),getContext());
-            startActivity(intent);
+           /*
+           Intent intent =
+
+           if(mName==R.string.sport_cars){
+               intent = BrandFragment.getIntent(mName,getContext(),CarFactory.VehicleType.SPORTVEHICLE);
+           } else if (mName == R.string.sedan_cars) {
+
+               intent =
+           }
+
+           startActivity(intent);
+            */
 
         }
 
 
         public void bind(int image,int name){
-          mTextView.setText(name);
+
+           mName = name;
+           mTextView.setText(name);
           mImageView.setImageResource(image);
 
         }
