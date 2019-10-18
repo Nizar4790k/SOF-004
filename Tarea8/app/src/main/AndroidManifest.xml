@@ -21,6 +21,10 @@
 
         </activity>
 
+        <activity android:name=".VehicleActivity">
+
+        </activity>
+
 
     </application>
 

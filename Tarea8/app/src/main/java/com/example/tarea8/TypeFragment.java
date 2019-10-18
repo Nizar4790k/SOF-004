@@ -36,7 +36,7 @@ public class TypeFragment extends Fragment {
     }
 
 
-    private class  TypeAdapter extends RecyclerView.Adapter<TypeHolder>{
+    private class  TypeAdapter extends RecyclerView.Adapter<VehicleHolder>{
 
        private final int [] names = {R.string.sport_cars,R.string.sedan_cars,R.string.all_terrain_cars};
         private  final int [] photo = {R.drawable.sport_car,R.drawable.sedan_car,R.drawable.all_terrain_auto};
@@ -44,14 +44,14 @@ public class TypeFragment extends Fragment {
 
         @NonNull
         @Override
-        public TypeHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        public VehicleHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
            LayoutInflater inflater = LayoutInflater.from(getContext());
 
-            return new TypeHolder(inflater,parent);
+            return new VehicleHolder(inflater,parent);
         }
 
         @Override
-        public void onBindViewHolder(@NonNull TypeHolder holder, int position) {
+        public void onBindViewHolder(@NonNull VehicleHolder holder, int position) {
 
             holder.bind(photo[position],names[position]);
 
@@ -63,13 +63,13 @@ public class TypeFragment extends Fragment {
         }
     }
 
-    private class TypeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    private class VehicleHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private ImageView mImageView;
         private TextView mTextView;
         private int mName;
 
-       public TypeHolder(LayoutInflater inflater, ViewGroup group){
+       public VehicleHolder(LayoutInflater inflater, ViewGroup group){
 
            super(inflater.inflate(R.layout.type_list_item,group,false));
            mImageView = itemView.findViewById(R.id.image_view_type);
@@ -82,18 +82,20 @@ public class TypeFragment extends Fragment {
         @Override
         public void onClick(View v) {
 
-           /*
-           Intent intent =
+
+           Intent intent ;
 
            if(mName==R.string.sport_cars){
-               intent = BrandFragment.getIntent(mName,getContext(),CarFactory.VehicleType.SPORTVEHICLE);
+               intent = BrandFragment.getIntent(CarFactory.VehicleType.SPORTVEHICLE,getContext());
            } else if (mName == R.string.sedan_cars) {
 
-               intent =
+               intent = BrandFragment.getIntent(CarFactory.VehicleType.SEDAMVEHICLE,getContext());
+           }else{
+               intent = BrandFragment.getIntent(CarFactory.VehicleType.ALLTERRAINVEHICLE,getContext());
            }
 
            startActivity(intent);
-            */
+
 
         }
 

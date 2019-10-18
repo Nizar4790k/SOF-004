@@ -1,5 +1,7 @@
 package com.example.tarea8;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
 public class Brand  implements Serializable {
@@ -27,5 +29,12 @@ public class Brand  implements Serializable {
 
     public void setPhoto(int photo) {
         mPhoto = photo;
+    }
+
+
+    @NonNull
+    @Override
+    public String toString() {
+        return getName();
     }
 }

@@ -24,20 +24,21 @@ public class CarFactory  {
 
 
 
-    public Vehicle getVehicle(VehicleType vehicleType){
+    public Vehicle getVehicle(VehicleType vehicleType,int year,Brand brand,String model){
 
 
 
 
         switch (vehicleType){
             case SPORTVEHICLE:
-                return new SportVehicle();
+
+                return new SportVehicle(brand,model,year);
 
             case SEDAMVEHICLE:
-                return new SedanVehicle();
+                return new SedanVehicle(brand,model,year);
 
             case  ALLTERRAINVEHICLE:
-                return new AllTerrainVehicle();
+                return new AllTerrainVehicle(brand,model,year);
 
 
                 default: return null;

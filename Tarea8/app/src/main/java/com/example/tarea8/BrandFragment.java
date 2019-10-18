@@ -27,6 +27,7 @@ public class BrandFragment extends Fragment {
     public static final String TYPE="Type";
 
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class BrandFragment extends Fragment {
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        int type = getActivity().getIntent().getIntExtra(TYPE,0);
+        CarFactory.VehicleType type = (CarFactory.VehicleType)getActivity().getIntent().getSerializableExtra(TYPE);
 
         Brand brand1 = null;
         Brand brand2 = null;
@@ -46,7 +47,7 @@ public class BrandFragment extends Fragment {
 
         switch (type){
 
-            case R.string.sport_cars:
+            case SPORTVEHICLE:
 
             brand1= new Brand("Ferrari",R.drawable.ferrari);
             brand2 = new Brand("Lamborgini",R.drawable.lamborgini);
@@ -56,7 +57,7 @@ public class BrandFragment extends Fragment {
             break;
 
 
-            case R.string.sedan_cars:
+            case SEDAMVEHICLE:
 
                 brand1 = new Brand("Hyundai",R.drawable.hyundai);
                 brand2 = new Brand("Honda",R.drawable.honda);
@@ -65,7 +66,7 @@ public class BrandFragment extends Fragment {
 
                 break;
 
-            case R.string.all_terrain_cars:
+            case ALLTERRAINVEHICLE:
 
                 brand1 = new Brand("Suzuki",R.drawable.suzuki);
                 brand2 = new Brand("Yamaha",R.drawable.yamaha);
@@ -102,7 +103,7 @@ public class BrandFragment extends Fragment {
         public BrandHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
 
-            return new BrandHolder(inflater,parent);
+            return new BrandHolder(inflater,parent,mBrands);
         }
 
         @Override
@@ -124,14 +125,18 @@ public class BrandFragment extends Fragment {
         private ImageView mImageView;
         private TextView mTextView;
         private Brand mBrand;
+        private List<Brand> mBrands;
 
 
-        public BrandHolder(LayoutInflater inflater, ViewGroup group){
+        public BrandHolder(LayoutInflater inflater, ViewGroup group,List<Brand> brands){
 
             super(inflater.inflate(R.layout.brand_list_item,group,false));
             mImageView = itemView.findViewById(R.id.image_view_brand);
             mTextView = itemView.findViewById(R.id.text_view_name_brand);
             itemView.setOnClickListener(this);
+
+            mBrands=brands;
+
 
         }
 
@@ -139,7 +144,17 @@ public class BrandFragment extends Fragment {
         @Override
         public void onClick(View v) {
 
+          CarFactory.VehicleType vehicleType = (CarFactory.VehicleType)  getActivity().getIntent().getSerializableExtra(TYPE);
 
+
+                Brand [] brands = new Brand[2];
+
+                for(int i=0;i<brands.length;i++){
+                    brands[i]= mBrands.get(i);
+                }
+
+            Intent intent = VehicleFragment.getIntent(getContext(), mBrand, vehicleType,brands);
+            startActivity(intent);
 
 
         }
@@ -159,10 +174,10 @@ public class BrandFragment extends Fragment {
     }
 
 
-    public static Intent getIntent(int type, Context context){
+    public static Intent getIntent(CarFactory.VehicleType vehicleType, Context context){
 
         Intent intent = new Intent(context,BrandActivity.class);
-        intent.putExtra(TYPE,type);
+        intent.putExtra(TYPE,vehicleType);
 
         return intent;
 

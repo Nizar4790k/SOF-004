@@ -1,28 +1,22 @@
 package com.example.tarea8;
 
+import androidx.annotation.NonNull;
+
 public abstract class Vehicle  {
 
     private Brand mVehicleBrand;
-
     private  int mYear;
     private  String mModel;
-    private int mPhoto;
 
-    public Vehicle(Brand vehicleBrand, int year, String model, int photo) {
-        setVehicleBrand(vehicleBrand);
-        setYear(year);
-        setModel(model);
-        setPhoto(photo);
-    }
 
-    public Vehicle(Brand vehicleBrand,String model){
+
+
+    public Vehicle(Brand vehicleBrand,String model,int year){
         this.mVehicleBrand= vehicleBrand;
         this.mModel = model;
+        this.mYear = year;
     }
 
-    public Vehicle(){
-
-    }
 
 
     public Brand getVehicleBrand() {
@@ -49,11 +43,10 @@ public abstract class Vehicle  {
         mModel = model;
     }
 
-    public int getPhoto() {
-        return mPhoto;
-    }
 
-    public void setPhoto(int photo) {
-        mPhoto = photo;
+    @NonNull
+    @Override
+    public String toString() {
+        return getVehicleBrand().toString() + " "+ getModel() +" "+getYear();
     }
 }
