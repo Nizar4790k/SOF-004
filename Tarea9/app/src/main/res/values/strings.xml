@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Tarea9</string>
+    <string name="add">ADD</string>
+    <string name="delete">DELETE</string>
+    <string name="worker">WORKER</string>
+    <string name="manager">MANAGER</string>
+
+</resources>
