@@ -10,15 +10,33 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tarea9.R;
+import com.example.tarea9.model.Worker;
+
+import java.util.List;
 
 public class WorkerListFragment extends Fragment {
+
+
+    private RecyclerView mRecyclerView;
+
+
+
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.list_fragment,container,false);
+
+        mRecyclerView = view.findViewById(R.id.recycler_view);
+
+
+
+
+        return view;
     }
 
     @Override
@@ -32,4 +50,46 @@ public class WorkerListFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.main_activity,menu);
     }
+
+
+    private class WorkerAdapter extends RecyclerView.Adapter<WorkerHolder>{
+
+        private List<Worker> mWorkers;
+
+        public WorkerAdapter(List<Worker> workers){
+            mWorkers=workers;
+        }
+
+
+        @NonNull
+        @Override
+        public WorkerHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return null;
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull WorkerHolder holder, int position) {
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return 0;
+        }
+    }
+
+
+    private class WorkerHolder extends RecyclerView.ViewHolder{
+
+        public WorkerHolder(LayoutInflater inflater, ViewGroup parent){
+            super(inflater.inflate(R.layout.worker_list_item,parent,false));
+
+        }
+
+
+        public WorkerHolder(@NonNull View itemView) {
+            super(itemView);
+        }
+    }
+
 }

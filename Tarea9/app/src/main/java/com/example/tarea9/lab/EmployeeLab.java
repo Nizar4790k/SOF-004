@@ -4,14 +4,14 @@ import com.example.tarea9.model.Employee;
 
 import java.util.List;
 
-public class EmployeLab implements Lab {
+public class EmployeeLab {
 
-    private static EmployeLab instance;
-
-
+    private static EmployeeLab instance;
 
 
-    private EmployeLab(){
+
+
+    private EmployeeLab(){
 
     }
 
@@ -24,12 +24,11 @@ public class EmployeLab implements Lab {
 
     }
 
-    @Override
     public void delete(Employee e) {
 
     }
 
-    @Override
+
     public List<Employee> getEmployeeList() {
         return null;
     }
@@ -39,9 +38,9 @@ public class EmployeLab implements Lab {
 
 
 
-    private EmployeLab getInstance(){
+    public  static EmployeeLab getInstance(){
         if(instance==null){
-            instance = new EmployeLab();
+            instance = new EmployeeLab();
         }
 
         return instance;

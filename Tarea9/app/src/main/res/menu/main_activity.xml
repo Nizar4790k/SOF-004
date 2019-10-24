@@ -5,7 +5,9 @@
     <item
         android:title="@string/add"
         android:icon="@drawable/ic_add"
+
         app:showAsAction="ifRoom|withText"
+
 
         />
 </menu>
