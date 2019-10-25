@@ -5,6 +5,7 @@
     <item
         android:title="@string/add"
         android:icon="@drawable/ic_add"
+        android:id="@+id/add"
 
         app:showAsAction="ifRoom|withText"
 

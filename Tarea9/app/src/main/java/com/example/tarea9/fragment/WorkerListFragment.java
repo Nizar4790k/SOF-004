@@ -1,5 +1,6 @@
 package com.example.tarea9.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,8 +16,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tarea9.R;
-import com.example.tarea9.lab.EmployeeLab;
-import com.example.tarea9.model.Employee;
 import com.example.tarea9.model.Worker;
 
 import java.util.List;
@@ -37,6 +36,9 @@ public class WorkerListFragment extends Fragment {
 
         mRecyclerView = view.findViewById(R.id.recycler_view);
 
+        List<Worker> workerList = null;
+
+        WorkerAdapter workerAdapter = new WorkerAdapter(workerList);
 
 
 
@@ -63,7 +65,21 @@ public class WorkerListFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
+
+        switch (item.getItemId()){
+
+            case R.id.add:
+
+                Intent intent = FormFragment.newIntent(getActivity(),true);
+                startActivity(intent);
+
+                return true;
+
+                default:
+                    return super.onOptionsItemSelected(item);
+
+        }
+
     }
 
     private class WorkerAdapter extends RecyclerView.Adapter<WorkerHolder>  {

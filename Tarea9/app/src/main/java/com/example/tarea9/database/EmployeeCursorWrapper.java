@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.CursorWrapper;
 
 import com.example.tarea9.model.Employee;
+import com.example.tarea9.model.Manager;
 import com.example.tarea9.model.Worker;
 
 import java.util.UUID;
@@ -29,7 +30,7 @@ public class EmployeeCursorWrapper extends CursorWrapper {
 
 
 
-        Worker worker = new Worker(name,position,local,salary);
+        Worker worker = new Worker(name,position,local,salary,uuid,hasTitle);
 
 
 
@@ -37,5 +38,7 @@ public class EmployeeCursorWrapper extends CursorWrapper {
         return null;
 
     }
+
+
 
 }

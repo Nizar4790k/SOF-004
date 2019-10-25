@@ -1,5 +1,7 @@
 package com.example.tarea9.fragment;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,11 +19,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.tarea9.R;
+import com.example.tarea9.activity.FormActivity;
 import com.example.tarea9.lab.EmployeeLab;
 import com.example.tarea9.model.Employee;
 import com.example.tarea9.model.Worker;
 
-public class WorkerFragment extends Fragment {
+public class FormFragment extends Fragment {
 
    private EditText mEditTextName;
    private EditText mEditTextSalary;
@@ -29,6 +32,7 @@ public class WorkerFragment extends Fragment {
    private Spinner mSpinnerLocal;
    private CheckBox mHasTitle;
    private Button mButtonAddOrCreate;
+   private static final String CREATOR_MODE="CreatorMode";
 
 
 
@@ -53,25 +57,20 @@ public class WorkerFragment extends Fragment {
                 String name  = mEditTextName.getText().toString();
                 double salary =Double.parseDouble( mEditTextSalary.getText().toString());
                 String position = mEditTextPosition.getText().toString();
-                int local = (int)mSpinnerLocal.getSelectedItem();
+                int local = 4;
+                boolean hasTitle = mHasTitle.isChecked();
 
                 Employee employee;
 
 
 
-                employee = new Worker(name, position, local, salary);
-                EmployeeLab employeeLab = EmployeeLab.getInstance();
-
-
-
-
-
-
+                employee = new Worker(name, position, local, salary,hasTitle);
+                EmployeeLab employeeLab = EmployeeLab.getInstance(getContext());
 
 
 
                  employeeLab.add(employee);
-
+                 getActivity().finish();
 
 
 
@@ -117,4 +116,18 @@ public class WorkerFragment extends Fragment {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+    public static Intent newIntent(Context context,boolean createMode){
+
+        Intent intent = new Intent(context, FormActivity.class);
+        intent.putExtra(CREATOR_MODE,createMode);
+
+        return intent;
+
+
+
+    }
+
 }

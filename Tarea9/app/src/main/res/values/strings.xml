@@ -4,5 +4,11 @@
     <string name="delete">DELETE</string>
     <string name="worker">WORKER</string>
     <string name="manager">MANAGER</string>
+    <string name="name">Name:</string>
+    <string name="position">Position:</string>
+    <string name="salary">Salary: </string>
+    <string name="hast_title">Has title</string>
+
+
 
 </resources>

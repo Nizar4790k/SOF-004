@@ -12,15 +12,27 @@ public class Employee  {
     protected double mSalary;
 
 
-    public Employee(String name, String position, int local, double salary,UUID uuid) {
+    public Employee(String name, String position, int local, double salary) {
 
         mUUID = UUID.randomUUID();
         mName = name;
         mPosition = position;
         mLocal = local;
         mSalary = salary;
-        this.mUUID=uuid;
+
         
+
+    }
+
+    public Employee(String name, String position, int local, double salary,UUID uuid) {
+
+        mUUID = uuid;
+        mName = name;
+        mPosition = position;
+        mLocal = local;
+        mSalary = salary;
+
+
 
     }
 
@@ -57,5 +69,7 @@ public class Employee  {
         mPosition = position;
     }
 
-
+    public UUID getUUID() {
+        return mUUID;
+    }
 }
