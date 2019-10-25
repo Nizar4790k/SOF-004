@@ -12,13 +12,15 @@ public class Employee  {
     protected double mSalary;
 
 
-    public Employee(String name, String position, int local, double salary) {
+    public Employee(String name, String position, int local, double salary,UUID uuid) {
 
         mUUID = UUID.randomUUID();
         mName = name;
         mPosition = position;
         mLocal = local;
         mSalary = salary;
+        this.mUUID=uuid;
+        
 
     }
 

@@ -16,21 +16,32 @@ public class EmployeeLab {
     }
 
 
-    public void add(Employee employee){
+    public <T extends Employee> void add(T e){
+
 
     }
 
-    public void update(Employee employee){
+    public <T extends Employee>void update (T e) {
+
+
 
     }
 
-    public void delete(Employee e) {
+    public <T extends Employee>void delete (T e) {
+
+
+
+
 
     }
 
 
-    public List<Employee> getEmployeeList() {
-        return null;
+    public List<? extends Employee> getEmployeeList() {
+
+
+
+
+        return null ;
     }
 
 
