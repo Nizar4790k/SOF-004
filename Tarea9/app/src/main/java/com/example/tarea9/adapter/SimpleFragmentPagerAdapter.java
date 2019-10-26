@@ -28,14 +28,8 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
                 return new WorkerListFragment();
 
 
-
-
-            case 2:
-
-
                 default:
                     return new WorkerListFragment();
-
 
         }
 

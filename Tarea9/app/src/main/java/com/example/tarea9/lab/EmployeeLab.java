@@ -63,22 +63,23 @@ public class EmployeeLab {
     }
 
 
-    public List< ? extends Employee > getEmployeeList(String tableName) {
+    public List<Worker> getWorkerList() {
 
-        List<?> employees = new ArrayList<>();
+        List<Worker> workers = new ArrayList<>();
 
 
 
 
         EmployeeCursorWrapper cursorWrapper = queryReminder(null,
-                null,tableName);
+                null, EmployeeDbSchema.WorkerTable.NAME);
+
 
 
         try{
             cursorWrapper.moveToFirst();
 
             while (!cursorWrapper.isAfterLast()){
-                employees.add(()cursorWrapper.getWorker());
+                workers.add(cursorWrapper.getWorker());
                 cursorWrapper.moveToNext();
 
             }
@@ -89,14 +90,14 @@ public class EmployeeLab {
 
 
 
-        return reminders;
+        return workers;
 
 
 
 
 
 
-        return null ;
+
     }
 
 

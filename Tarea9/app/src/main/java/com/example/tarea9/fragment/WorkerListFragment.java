@@ -13,9 +13,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tarea9.R;
+import com.example.tarea9.lab.EmployeeLab;
 import com.example.tarea9.model.Worker;
 
 import java.util.List;
@@ -31,19 +33,21 @@ public class WorkerListFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.list_fragment,container,false);
+
 
         mRecyclerView = view.findViewById(R.id.recycler_view);
 
-        List<Worker> workerList = null;
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        List<Worker> workerList = EmployeeLab.getInstance(getContext()).getWorkerList();
 
         WorkerAdapter workerAdapter = new WorkerAdapter(workerList);
 
-
-
-
-
+        mRecyclerView.setAdapter(workerAdapter);
 
 
 
@@ -103,7 +107,9 @@ public class WorkerListFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull WorkerHolder holder, int position) {
 
-            holder.onBind(mWorkers.get(position));
+        Worker worker = mWorkers.get(position);
+
+            holder.onBind(worker);
 
         }
 
@@ -123,9 +129,9 @@ public class WorkerListFragment extends Fragment {
 
         public WorkerHolder(LayoutInflater inflater, ViewGroup parent){
             super(inflater.inflate(R.layout.worker_list_item,parent,false));
-
             mTextViewName = itemView.findViewById(R.id.text_view_name);
             mTextViewLocal = itemView.findViewById(R.id.text_view_local);
+
 
         }
 
@@ -140,8 +146,10 @@ public class WorkerListFragment extends Fragment {
 
 
         public void onBind(Worker worker){
+
+
             mTextViewName.setText(worker.getName());
-            mTextViewLocal.setText(worker.getLocal());
+            mTextViewLocal.setText(String.valueOf(worker.getLocal()));
 
         }
 
