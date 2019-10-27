@@ -20,6 +20,10 @@
         <activity android:name=".activity.WorkerActivity">
 
         </activity>
+
+        <activity android:name=".activity.ManagerActivity">
+
+        </activity>
     </application>
 
 </manifest>
