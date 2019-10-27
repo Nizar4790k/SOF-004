@@ -8,7 +8,9 @@
     <string name="position">Position:</string>
     <string name="salary">Salary: </string>
     <string name="hast_title">Has title</string>
-
+    <string name="name_text_view">Name : %1$s </string>
+    <string name="local_text_view">Local: %1$s</string>
+    <string name="update">UPDATE</string>
 
 
 </resources>

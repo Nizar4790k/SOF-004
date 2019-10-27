@@ -43,11 +43,7 @@ public class WorkerListFragment extends Fragment {
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        List<Worker> workerList = EmployeeLab.getInstance(getContext()).getWorkerList();
-
-        WorkerAdapter workerAdapter = new WorkerAdapter(workerList);
-
-        mRecyclerView.setAdapter(workerAdapter);
+        updateUI();
 
 
 
@@ -74,7 +70,7 @@ public class WorkerListFragment extends Fragment {
 
             case R.id.add:
 
-                Intent intent = FormFragment.newIntent(getActivity(),true);
+                Intent intent = FormFragment.newIntent(getActivity(),null);
                 startActivity(intent);
 
                 return true;
@@ -126,11 +122,13 @@ public class WorkerListFragment extends Fragment {
 
         private TextView mTextViewName;
         private TextView mTextViewLocal;
+        private Worker mWorker;
 
         public WorkerHolder(LayoutInflater inflater, ViewGroup parent){
             super(inflater.inflate(R.layout.worker_list_item,parent,false));
             mTextViewName = itemView.findViewById(R.id.text_view_name);
             mTextViewLocal = itemView.findViewById(R.id.text_view_local);
+            itemView.setOnClickListener(this);
 
 
         }
@@ -142,18 +140,40 @@ public class WorkerListFragment extends Fragment {
         @Override
         public void onClick(View v) {
 
+            Intent intent = FormFragment.newIntent(getContext(),mWorker.getUUID());
+            startActivity(intent);
+
+
+
         }
 
 
         public void onBind(Worker worker){
 
-
-            mTextViewName.setText(worker.getName());
-            mTextViewLocal.setText(String.valueOf(worker.getLocal()));
-
+            mTextViewName.setText(getString(R.string.name_text_view,worker.getName()));
+            mTextViewLocal.setText(getString(R.string.local_text_view,String.valueOf(worker.getLocal())));
+            mWorker=worker;
         }
 
 
+
+
     }
+
+    public void updateUI(){
+        List<Worker> workerList = EmployeeLab.getInstance(getContext()).getWorkerList();
+
+        WorkerAdapter workerAdapter = new WorkerAdapter(workerList);
+
+        mRecyclerView.setAdapter(workerAdapter);
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateUI();
+    }
+
 
 }

@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.tarea9.database.EmployeeCursorWrapper;
 import com.example.tarea9.database.EmployeeDbSchema;
@@ -14,6 +15,7 @@ import com.example.tarea9.model.Worker;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class EmployeeLab {
 
@@ -30,7 +32,7 @@ public class EmployeeLab {
     }
 
 
-    public <T extends Employee> void add(T employee){
+    public void add(Worker employee){
 
         String tableName=null;
 
@@ -48,21 +50,51 @@ public class EmployeeLab {
 
     }
 
-    public <T extends Employee>void update (T e) {
+    public void update(Worker worker){
 
+        String uuidString = worker.getUUID().toString();
+        ContentValues values = getContentValues(worker);
+
+      int s =  mDatabase.update(EmployeeDbSchema.WorkerTable.NAME,values,
+                EmployeeDbSchema.WorkerTable.Cols.UUID+ " = ?",
+                new String []{uuidString});
+
+        Log.i("ESTADO_ACTUALIZACION","s="+s);
+
+    }
+
+    public void delete (Worker worker) {
+
+
+
+        mDatabase.delete(EmployeeDbSchema.WorkerTable.NAME,
+                EmployeeDbSchema.WorkerTable.Cols.UUID + "= ?",
+                new String[]{worker.getUUID().toString()});
 
 
     }
 
-    public <T extends Employee>void delete (T e) {
+    public Worker getEmployee(UUID uuid,String tableName,String columnName) {
+
+        EmployeeCursorWrapper cursorWrapper = queryReminder(columnName + " = ?"
+                , new String[]{uuid.toString()}, tableName);
 
 
+       try {
+            if (cursorWrapper.getCount() == 0) {
+                return null;
+            }
+
+            cursorWrapper.moveToFirst();
+            return cursorWrapper.getWorker();
+        }finally{
+
+            cursorWrapper.close();
 
 
+        }
 
     }
-
-
     public List<Worker> getWorkerList() {
 
         List<Worker> workers = new ArrayList<>();
@@ -105,6 +137,8 @@ public class EmployeeLab {
 
 
 
+
+
     public  static EmployeeLab getInstance(Context context){
         if(instance==null){
             instance = new EmployeeLab(context);
@@ -114,13 +148,13 @@ public class EmployeeLab {
 
     }
 
-    private static<T extends Employee> ContentValues getContentValues(T employee){
+    private static ContentValues getContentValues(Worker worker){
 
        ContentValues contentValues = new ContentValues();
 
 
-       if(employee instanceof Worker){
-          Worker worker = (Worker) employee;
+
+
 
            contentValues.put(EmployeeDbSchema.WorkerTable.Cols.NAME,worker.getName());
            contentValues.put(EmployeeDbSchema.WorkerTable.Cols.SALARY,worker.getSalary());
@@ -128,7 +162,10 @@ public class EmployeeLab {
            contentValues.put(EmployeeDbSchema.WorkerTable.Cols.HAS_TITLE,worker.hasTitle()?1:0 );
            contentValues.put(EmployeeDbSchema.WorkerTable.Cols.LOCAL,worker.getLocal());
            contentValues.put(EmployeeDbSchema.WorkerTable.Cols.UUID,worker.getUUID().toString());
-       }else {
+
+
+       /*
+       else {
 
            Manager manager = (Manager) employee;
 
@@ -139,7 +176,7 @@ public class EmployeeLab {
 
 
        }
-
+    */
 
        return contentValues;
 

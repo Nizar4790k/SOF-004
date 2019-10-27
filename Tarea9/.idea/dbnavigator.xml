@@ -26,15 +26,18 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="e6f54ac0-483b-4653-ab65-22ece55f56c1">
-      <console name="Connection" type="STANDARD" schema="main" session="Main"><![CDATA[select * from workers;]]></console>
+    <connection id="74868eb2-2f69-48c0-b983-ce24368502f0">
+      <console name="Connection" type="STANDARD" schema="main" session="Main"><![CDATA[SELECT * FROM workers]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="e6f54ac0-483b-4653-ab65-22ece55f56c1" />
+    <connection id="74868eb2-2f69-48c0-b983-ce24368502f0" />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="74868eb2-2f69-48c0-b983-ce24368502f0" dataset="main.managers" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -59,7 +62,7 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="e6f54ac0-483b-4653-ab65-22ece55f56c1" active="true">
+      <connection id="74868eb2-2f69-48c0-b983-ce24368502f0" active="true">
         <database>
           <name value="Connection" />
           <description value="" />
