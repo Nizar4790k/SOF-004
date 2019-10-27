@@ -2,8 +2,6 @@ package com.example.tarea9.fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -23,7 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.tarea9.R;
-import com.example.tarea9.activity.FormActivity;
+import com.example.tarea9.activity.WorkerActivity;
 import com.example.tarea9.activity.MainActivity;
 import com.example.tarea9.database.EmployeeDbSchema;
 import com.example.tarea9.lab.EmployeeLab;
@@ -31,7 +29,7 @@ import com.example.tarea9.model.Worker;
 
 import java.util.UUID;
 
-public class FormFragment extends Fragment {
+public class WorkerFragment extends Fragment {
 
 
    private EditText mEditTextName;
@@ -54,7 +52,7 @@ public class FormFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.form_fragment,null,false);
+        View view = inflater.inflate(R.layout.worker_fragment,null,false);
 
 
         mEmployeeLab = EmployeeLab.getInstance(getContext());
@@ -231,7 +229,7 @@ public class FormFragment extends Fragment {
 
     public static Intent newIntent(Context context, UUID uuid){
 
-        Intent intent = new Intent(context, FormActivity.class);
+        Intent intent = new Intent(context, WorkerActivity.class);
 
 
         if(uuid==null){

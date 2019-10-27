@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tarea9.R;
 import com.example.tarea9.lab.EmployeeLab;
+import com.example.tarea9.model.Manager;
 import com.example.tarea9.model.Worker;
 
 import java.util.List;
@@ -70,7 +71,7 @@ public class WorkerListFragment extends Fragment {
 
             case R.id.add:
 
-                Intent intent = FormFragment.newIntent(getActivity(),null);
+                Intent intent = WorkerFragment.newIntent(getActivity(),null);
                 startActivity(intent);
 
                 return true;
@@ -82,26 +83,26 @@ public class WorkerListFragment extends Fragment {
 
     }
 
-    private class WorkerAdapter extends RecyclerView.Adapter<WorkerHolder>  {
+    private class ManagerAdapter extends RecyclerView.Adapter<ManagerHolder>  {
 
         private List<Worker> mWorkers;
 
-        public WorkerAdapter(List<Worker> workers){
+        public ManagerAdapter(List<Worker> workers){
             mWorkers=workers;
         }
 
 
         @NonNull
         @Override
-        public WorkerHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        public ManagerHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
            LayoutInflater inflater = LayoutInflater.from(getContext());
 
-            return new WorkerHolder(inflater,parent);
+            return new ManagerHolder(inflater,parent);
         }
 
         @Override
-        public void onBindViewHolder(@NonNull WorkerHolder holder, int position) {
+        public void onBindViewHolder(@NonNull ManagerHolder holder, int position) {
 
         Worker worker = mWorkers.get(position);
 
@@ -118,7 +119,7 @@ public class WorkerListFragment extends Fragment {
     }
 
 
-    private class WorkerHolder extends RecyclerView.ViewHolder implements RecyclerView.OnClickListener{
+    private class ManagerHolder extends RecyclerView.ViewHolder implements RecyclerView.OnClickListener{
 
         private TextView mTextViewName;
         private TextView mTextViewLocal;
@@ -127,7 +128,7 @@ public class WorkerListFragment extends Fragment {
 
         private Worker mWorker;
 
-        public WorkerHolder(LayoutInflater inflater, ViewGroup parent){
+        public ManagerHolder(LayoutInflater inflater, ViewGroup parent){
             super(inflater.inflate(R.layout.worker_list_item,parent,false));
             mTextViewName = itemView.findViewById(R.id.text_view_name);
             mTextViewLocal = itemView.findViewById(R.id.text_view_local);
@@ -144,7 +145,7 @@ public class WorkerListFragment extends Fragment {
         @Override
         public void onClick(View v) {
 
-            Intent intent = FormFragment.newIntent(getContext(),mWorker.getUUID());
+            Intent intent = WorkerFragment.newIntent(getContext(),mWorker.getUUID());
             startActivity(intent);
 
 
@@ -170,9 +171,9 @@ public class WorkerListFragment extends Fragment {
     public void updateUI(){
         List<Worker> workerList = EmployeeLab.getInstance(getContext()).getWorkerList();
 
-        WorkerAdapter workerAdapter = new WorkerAdapter(workerList);
+        ManagerAdapter managerAdapter = new ManagerAdapter(workerList);
 
-        mRecyclerView.setAdapter(workerAdapter);
+        mRecyclerView.setAdapter(managerAdapter);
 
     }
 

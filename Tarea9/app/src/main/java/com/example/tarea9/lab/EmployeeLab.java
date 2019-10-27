@@ -132,6 +132,37 @@ public class EmployeeLab {
     }
 
 
+    public List<Manager> getManagerList(){
+        List<Manager> managers = new ArrayList<>();
+
+
+
+
+        EmployeeCursorWrapper cursorWrapper = queryReminder(null,
+                null, EmployeeDbSchema.WorkerTable.NAME);
+
+
+
+        try{
+            cursorWrapper.moveToFirst();
+
+            while (!cursorWrapper.isAfterLast()){
+                managers.add(cursorWrapper.getManager());
+                cursorWrapper.moveToNext();
+
+            }
+
+        } finally {
+            cursorWrapper.close();
+        }
+
+
+
+        return managers;
+
+    }
+
+
 
 
 
