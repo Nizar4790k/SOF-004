@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.tarea9.model.Employee;
+
 public class EmployeeOpenHelper extends SQLiteOpenHelper {
 
 
@@ -31,7 +33,8 @@ public class EmployeeOpenHelper extends SQLiteOpenHelper {
                 + EmployeeDbSchema.ManagerTable.Cols.NAME+","+
                 EmployeeDbSchema.ManagerTable.Cols.LOCAL+","+
                 EmployeeDbSchema.ManagerTable.Cols.UUID+","+
-                EmployeeDbSchema.ManagerTable.Cols.SALARY+")");
+                EmployeeDbSchema.ManagerTable.Cols.SALARY+
+                EmployeeDbSchema.ManagerTable.Cols.DEPARTMENT+")");
 
 
     }

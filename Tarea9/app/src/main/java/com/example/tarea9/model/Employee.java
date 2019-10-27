@@ -5,26 +5,29 @@ import java.util.UUID;
 public class Employee  {
 
 
+
+
     private String mName;
     private String mPosition;
-    private int mLocal;
+    private String mLocal;
     private UUID mUUID;
     protected double mSalary;
 
 
-    public Employee(String name, String position, int local, double salary) {
+
+    public Employee(String name, String position, String local, double baseSalary) {
 
         mUUID = UUID.randomUUID();
         mName = name;
         mPosition = position;
         mLocal = local;
-        mSalary = salary;
+        mSalary = baseSalary;
 
         
 
     }
 
-    public Employee(String name, String position, int local, double salary,UUID uuid) {
+    public Employee(String name, String position, String local, double salary,UUID uuid) {
 
         mUUID = uuid;
         mName = name;
@@ -36,11 +39,11 @@ public class Employee  {
 
     }
 
-    public int getLocal() {
+    public String getLocal() {
         return mLocal;
     }
 
-    public void setLocal(int local) {
+    public void setLocal(String local) {
         mLocal = local;
     }
 
@@ -72,4 +75,5 @@ public class Employee  {
     public UUID getUUID() {
         return mUUID;
     }
+
 }

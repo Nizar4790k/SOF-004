@@ -33,6 +33,7 @@ public class EmployeeDbSchema {
             public static final String LOCAL="local";
             public static final String UUID = "uuid";
             public static final String SALARY="salary";
+            public static final String DEPARTMENT="deparment";
 
 
 

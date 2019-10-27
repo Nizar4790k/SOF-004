@@ -23,10 +23,7 @@ public class EmployeeCursorWrapper extends CursorWrapper {
         String position  = getString(getColumnIndex(EmployeeDbSchema.WorkerTable.Cols.POSITION));
         boolean hasTitle = getInt(getColumnIndex(EmployeeDbSchema.WorkerTable.Cols.HAS_TITLE))==1?true:false;
         UUID uuid =UUID.fromString(getString(getColumnIndex(EmployeeDbSchema.WorkerTable.Cols.UUID)));
-        int local = getInt(getColumnIndex(EmployeeDbSchema.WorkerTable.Cols.LOCAL));
-
-
-
+        String local = getString(getColumnIndex(EmployeeDbSchema.WorkerTable.Cols.LOCAL));
 
 
 
@@ -38,6 +35,22 @@ public class EmployeeCursorWrapper extends CursorWrapper {
         return worker;
 
     }
+
+
+    public Manager getManager(){
+
+        String name = getString(getColumnIndex(EmployeeDbSchema.WorkerTable.Cols.NAME));
+        double salary = getDouble(getColumnIndex(EmployeeDbSchema.WorkerTable.Cols.SALARY));
+        UUID uuid =UUID.fromString(getString(getColumnIndex(EmployeeDbSchema.WorkerTable.Cols.UUID)));
+        String local = getString(getColumnIndex(EmployeeDbSchema.WorkerTable.Cols.LOCAL));
+        String department = getString(getColumnIndex(EmployeeDbSchema.ManagerTable.Cols.DEPARTMENT));
+
+        Manager manager = new Manager(name,null,local,salary,uuid,department);
+
+        return manager;
+
+    }
+
 
 
 

@@ -32,15 +32,19 @@ public class EmployeeLab {
     }
 
 
-    public void add(Worker employee){
+    public void add(Employee employee){
 
         String tableName=null;
 
         if(employee instanceof Worker){
 
+
             tableName= EmployeeDbSchema.WorkerTable.NAME;
+
+
         }else{
             tableName= EmployeeDbSchema.ManagerTable.NAME;
+
         }
 
 
@@ -59,7 +63,6 @@ public class EmployeeLab {
                 EmployeeDbSchema.WorkerTable.Cols.UUID+ " = ?",
                 new String []{uuidString});
 
-        Log.i("ESTADO_ACTUALIZACION","s="+s);
 
     }
 
@@ -126,10 +129,6 @@ public class EmployeeLab {
 
 
 
-
-
-
-
     }
 
 
@@ -148,41 +147,44 @@ public class EmployeeLab {
 
     }
 
-    private static ContentValues getContentValues(Worker worker){
-
-       ContentValues contentValues = new ContentValues();
+    private static ContentValues getContentValues(Employee employee) {
 
 
 
+        if(employee instanceof Worker){
+            ContentValues contentValues = new ContentValues();
 
 
-           contentValues.put(EmployeeDbSchema.WorkerTable.Cols.NAME,worker.getName());
-           contentValues.put(EmployeeDbSchema.WorkerTable.Cols.SALARY,worker.getSalary());
-           contentValues.put(EmployeeDbSchema.WorkerTable.Cols.POSITION,worker.getPosition());
-           contentValues.put(EmployeeDbSchema.WorkerTable.Cols.HAS_TITLE,worker.hasTitle()?1:0 );
-           contentValues.put(EmployeeDbSchema.WorkerTable.Cols.LOCAL,worker.getLocal());
-           contentValues.put(EmployeeDbSchema.WorkerTable.Cols.UUID,worker.getUUID().toString());
 
+                Worker worker =(Worker) employee;
 
-       /*
-       else {
+                contentValues.put(EmployeeDbSchema.WorkerTable.Cols.NAME, worker.getName());
+                contentValues.put(EmployeeDbSchema.WorkerTable.Cols.SALARY, worker.getSalary());
+                contentValues.put(EmployeeDbSchema.WorkerTable.Cols.POSITION, worker.getPosition());
+                contentValues.put(EmployeeDbSchema.WorkerTable.Cols.HAS_TITLE, worker.hasTitle() ? 1 : 0);
+                contentValues.put(EmployeeDbSchema.WorkerTable.Cols.LOCAL, worker.getLocal());
+                contentValues.put(EmployeeDbSchema.WorkerTable.Cols.UUID, worker.getUUID().toString());
 
-           Manager manager = (Manager) employee;
+            return  contentValues;
 
-           contentValues.put(EmployeeDbSchema.WorkerTable.Cols.NAME,manager.getName());
-           contentValues.put(EmployeeDbSchema.WorkerTable.Cols.SALARY,manager.getSalary());
-           contentValues.put(EmployeeDbSchema.WorkerTable.Cols.LOCAL,manager.getLocal());
-           contentValues.put(EmployeeDbSchema.WorkerTable.Cols.UUID,manager.getUUID().toString());
+        }else{
 
+            Manager manager =(Manager) employee;
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(EmployeeDbSchema.WorkerTable.Cols.NAME,manager.getName());
+            contentValues.put(EmployeeDbSchema.WorkerTable.Cols.SALARY,manager.getSalary());
+            contentValues.put(EmployeeDbSchema.WorkerTable.Cols.LOCAL,manager.getLocal());
+            contentValues.put(EmployeeDbSchema.WorkerTable.Cols.UUID,manager.getUUID().toString());
+            return contentValues;
 
-       }
-    */
+        }
 
-       return contentValues;
 
 
 
     }
+
+
 
 
     private EmployeeCursorWrapper queryReminder(String whereClause, String[] whereArgs, String tableName) {

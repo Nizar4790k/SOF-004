@@ -11,6 +11,9 @@
     <string name="name_text_view">Name : %1$s </string>
     <string name="local_text_view">Local: %1$s</string>
     <string name="update">UPDATE</string>
+    <string name="choose_local">Choose a local</string>
+    <string name="not_valid">The values are wrong or are empty</string>
+    <string name="total_salary">Total Salary : %1$s</string>
 
 
 </resources>

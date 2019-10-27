@@ -122,12 +122,16 @@ public class WorkerListFragment extends Fragment {
 
         private TextView mTextViewName;
         private TextView mTextViewLocal;
+
+        private TextView mTextViewTotalSalary;
+
         private Worker mWorker;
 
         public WorkerHolder(LayoutInflater inflater, ViewGroup parent){
             super(inflater.inflate(R.layout.worker_list_item,parent,false));
             mTextViewName = itemView.findViewById(R.id.text_view_name);
             mTextViewLocal = itemView.findViewById(R.id.text_view_local);
+            mTextViewTotalSalary =  itemView.findViewById(R.id.text_view_total_salary);
             itemView.setOnClickListener(this);
 
 
@@ -152,6 +156,9 @@ public class WorkerListFragment extends Fragment {
 
             mTextViewName.setText(getString(R.string.name_text_view,worker.getName()));
             mTextViewLocal.setText(getString(R.string.local_text_view,String.valueOf(worker.getLocal())));
+            mTextViewTotalSalary.setText(getString(R.string.total_salary,
+                    String.valueOf(Worker.calculateTotalSalary(worker.getSalary(),worker.hasTitle()))));
+
             mWorker=worker;
         }
 

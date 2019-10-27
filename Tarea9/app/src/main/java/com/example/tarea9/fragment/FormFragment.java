@@ -11,10 +11,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +32,7 @@ import com.example.tarea9.model.Worker;
 import java.util.UUID;
 
 public class FormFragment extends Fragment {
+
 
    private EditText mEditTextName;
    private EditText mEditTextSalary;
@@ -64,9 +67,15 @@ public class FormFragment extends Fragment {
         mButtonAddOrCreate = view.findViewById(R.id.add_or_update_button);
 
 
+        final String[] locals = {getString(R.string.choose_local),"1","2","3","4"};
+        ArrayAdapter<String> a =new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_item, locals);
+        a.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinnerLocal.setAdapter(a);
+
+
         final boolean isCreatorMode = getActivity().getIntent().getBooleanExtra(CREATOR_MODE,true);
 
-      int drawable=0;
+         int drawable=0;
         String buttonText;
 
         if(isCreatorMode){
@@ -101,6 +110,8 @@ public class FormFragment extends Fragment {
             mEditTextSalary.setText(String.valueOf(mWorker.getSalary()));
             mEditTextPosition.setText(mWorker.getPosition());
             mHasTitle.setChecked(mWorker.hasTitle());
+            mSpinnerLocal.setSelection(Integer.parseInt(mWorker.getLocal()));
+
             setHasOptionsMenu(true);
 
 
@@ -121,18 +132,24 @@ public class FormFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+
+
                 String name  = mEditTextName.getText().toString();
-                double salary =Double.parseDouble( mEditTextSalary.getText().toString());
+
                 String position = mEditTextPosition.getText().toString();
-                int local = 4;
+                String local = (String)mSpinnerLocal.getSelectedItem();
+                String salaryString =mEditTextSalary.getText().toString();
                 boolean hasTitle = mHasTitle.isChecked();
 
-                mWorker.setSalary(salary);
-                mWorker.setName(name);
-                mWorker.setPosition(position);
-                mWorker.setLocal(local);
-                mWorker.setHasTitle(hasTitle);
+                boolean areEmpty = name.equals("") || position.equals("") || local.equals(locals[0])
+                        || salaryString.equals("");
 
+                if(areEmpty){
+                    Toast.makeText(getContext(),R.string.not_valid,Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                double salary = Double.parseDouble(salaryString);
 
 
 
@@ -141,10 +158,27 @@ public class FormFragment extends Fragment {
 
 
                 if(isCreatorMode){
+
+                    mWorker = new Worker(name,position,local,salary,hasTitle);
+
+                    mWorker.setSalary(salary);
+                    mWorker.setName(name);
+                    mWorker.setPosition(position);
+                    mWorker.setLocal(local);
+                    mWorker.setHasTitle(hasTitle);
+
+
+
                     employeeLab.add(mWorker);
 
 
                 }else{
+
+                    mWorker.setSalary(salary);
+                    mWorker.setName(name);
+                    mWorker.setPosition(position);
+                    mWorker.setLocal(local);
+                    mWorker.setHasTitle(hasTitle);
 
                     employeeLab.update(mWorker);
                 }
@@ -220,6 +254,8 @@ public class FormFragment extends Fragment {
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
     }
+
+
 
 
 
