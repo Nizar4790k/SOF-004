@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tarea9.R;
 import com.example.tarea9.lab.EmployeeLab;
-import com.example.tarea9.model.Manager;
 import com.example.tarea9.model.Worker;
 
 import java.util.List;
@@ -83,7 +82,7 @@ public class WorkerListFragment extends Fragment {
 
     }
 
-    private class ManagerAdapter extends RecyclerView.Adapter<ManagerHolder>  {
+    private class ManagerAdapter extends RecyclerView.Adapter<WorkerHolder>  {
 
         private List<Worker> mWorkers;
 
@@ -94,15 +93,15 @@ public class WorkerListFragment extends Fragment {
 
         @NonNull
         @Override
-        public ManagerHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        public WorkerHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
            LayoutInflater inflater = LayoutInflater.from(getContext());
 
-            return new ManagerHolder(inflater,parent);
+            return new WorkerHolder(inflater,parent);
         }
 
         @Override
-        public void onBindViewHolder(@NonNull ManagerHolder holder, int position) {
+        public void onBindViewHolder(@NonNull WorkerHolder holder, int position) {
 
         Worker worker = mWorkers.get(position);
 
@@ -119,7 +118,7 @@ public class WorkerListFragment extends Fragment {
     }
 
 
-    private class ManagerHolder extends RecyclerView.ViewHolder implements RecyclerView.OnClickListener{
+    private class WorkerHolder extends RecyclerView.ViewHolder implements RecyclerView.OnClickListener{
 
         private TextView mTextViewName;
         private TextView mTextViewLocal;
@@ -128,7 +127,7 @@ public class WorkerListFragment extends Fragment {
 
         private Worker mWorker;
 
-        public ManagerHolder(LayoutInflater inflater, ViewGroup parent){
+        public WorkerHolder(LayoutInflater inflater, ViewGroup parent){
             super(inflater.inflate(R.layout.worker_list_item,parent,false));
             mTextViewName = itemView.findViewById(R.id.text_view_name);
             mTextViewLocal = itemView.findViewById(R.id.text_view_local);

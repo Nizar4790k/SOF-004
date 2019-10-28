@@ -1,9 +1,11 @@
 package com.example.tarea9.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -48,7 +50,7 @@ public class ManagerListFragment extends ManagerFragment {
     public void updateUI(){
         List<Manager> workerList = EmployeeLab.getInstance(getContext()).getManagerList();
 
-        WorkerListFragment.ManagerAdapter workerAdapter = new WorkerListFragment.ManagerAdapter(workerList);
+        ManagerListFragment.ManagerAdapter workerAdapter = new ManagerListFragment.ManagerAdapter(workerList);
 
         mRecyclerView.setAdapter(workerAdapter);
 
@@ -58,7 +60,7 @@ public class ManagerListFragment extends ManagerFragment {
 
         private List<Worker> mWorkers;
 
-        public ManagerAdapter(List<Worker> workers){
+        public ManagerAdapter(List<Worke> workers){
             mWorkers=workers;
         }
 
@@ -85,6 +87,55 @@ public class ManagerListFragment extends ManagerFragment {
         public int getItemCount() {
             return mWorkers.size();
         }
+
+
+    }
+
+
+    private class ManagerHolder extends RecyclerView.ViewHolder implements RecyclerView.OnClickListener{
+
+        private TextView mTextViewName;
+        private TextView mTextViewLocal;
+
+        private TextView mTextViewSalary;
+
+        private Manager mManager;
+
+        public ManagerHolder(LayoutInflater inflater, ViewGroup parent){
+            super(inflater.inflate(R.layout.manager_list_item,parent,false));
+            mTextViewName = itemView.findViewById(R.id.text_view_name);
+            mTextViewLocal = itemView.findViewById(R.id.text_view_local);
+            mTextViewSalary =  itemView.findViewById(R.id.text_view_salary);
+            itemView.setOnClickListener(this);
+
+
+        }
+
+
+
+
+
+        @Override
+        public void onClick(View v) {
+
+            Intent intent = WorkerFragment.newIntent(getContext(), mManager.getUUID());
+            startActivity(intent);
+
+
+
+        }
+
+
+        public void onBind(Manager mManager){
+
+            mTextViewName.setText(getString(R.string.name_text_view,mManager.getName()));
+            mTextViewLocal.setText(getString(R.string.local_text_view,String.valueOf(mManager.getLocal())));
+            mTextViewSalary.setText(String.valueOf(mManager.getSalary()));
+
+            this.mManager =mManager;
+        }
+
+
 
 
     }

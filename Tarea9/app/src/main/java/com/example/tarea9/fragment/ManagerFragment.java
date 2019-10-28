@@ -4,12 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,11 +21,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tarea9.R;
+import com.example.tarea9.activity.MainActivity;
 import com.example.tarea9.activity.ManagerActivity;
 import com.example.tarea9.activity.WorkerActivity;
 import com.example.tarea9.database.EmployeeDbSchema;
 import com.example.tarea9.lab.EmployeeLab;
 import com.example.tarea9.model.Manager;
+import com.example.tarea9.model.Worker;
 
 import java.util.UUID;
 
@@ -85,8 +91,7 @@ public class ManagerFragment extends Fragment {
             drawable = R.drawable.ic_update;
 
             UUID uuid = (UUID) getActivity().getIntent().getSerializableExtra(IDENTIFIER);
-            mManager = EmployeeLab.getInstance(getContext()).getManager(uuid, EmployeeDbSchema.ManagerTable.NAME,
-                    EmployeeDbSchema.ManagerTable.Cols.UUID);
+            mManager = EmployeeLab.getInstance(getContext()).getManager(uuid);
 
 
             buttonText = getString(R.string.update);
@@ -94,10 +99,9 @@ public class ManagerFragment extends Fragment {
 
 
 
-            mEditTextName.setText(mManager.getName());
-            mEditTextSalary.setText(String.valueOf(mManager.getSalary()));
-            mEditTextPosition.setText(mManager.getPosition());
-            mHasTitle.setChecked(mManager.hasTitle());
+            mNameEditText.setText(mManager.getName());
+            mSalaryEditText.setText((String.valueOf(mManager.getSalary())));
+            mEditTextDepartment.setText(mManager.getDeparment());
             mSpinnerLocal.setSelection(Integer.parseInt(mManager.getLocal()));
 
             setHasOptionsMenu(true);
@@ -113,25 +117,63 @@ public class ManagerFragment extends Fragment {
 
         mButtonAddorUpdate = view.findViewById(R.id.add_or_update_button);
 
+        mButtonAddorUpdate.setCompoundDrawablesWithIntrinsicBounds(drawable,0,0,0);
+        mButtonAddorUpdate.setText(buttonText);
+
+
+
         mButtonAddorUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                String name  = mNameEditText.getText().toString();
+                String local = (String)mSpinnerLocal.getSelectedItem();
+                String salaryString =mSalaryEditText.getText().toString();
+                String department = mEditTextDepartment.getText().toString();
+
+
+                boolean areEmpty = name.equals("")  || local.equals(locals[0])
+                        || salaryString.equals("");
+
+                if(areEmpty){
+                    Toast.makeText(getContext(),R.string.not_valid,Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                double salary = Double.parseDouble(salaryString);
+
+
+
+                EmployeeLab employeeLab = EmployeeLab.getInstance(getContext());
+
+
+
+                if(isCreatorMode){
+
+                    mManager = new Manager(name,null,local,salary,department);
+
+
+                    employeeLab.add(mManager);
+
+
+                }else{
+
+                    mManager.setSalary(salary);
+                    mManager.setName(name);
+
+                    mManager.setLocal(local);
+                    mManager.setDeparment(department);
+
+                    employeeLab.update(mManager);
+                }
+
+                getBack();
 
 
 
 
             }
         });
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -171,5 +213,41 @@ public class ManagerFragment extends Fragment {
 
 
     }
+
+    private void getBack(){
+        Intent i=new Intent(getContext(), MainActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.form_fragment,menu);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int itemId = item.getItemId();
+
+
+        switch (itemId){
+            case R.id.delete_menu_item:
+                EmployeeLab.getInstance(getContext()).delete(mManager);
+                getBack();
+
+                return true;
+        }
+
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+
 
 }

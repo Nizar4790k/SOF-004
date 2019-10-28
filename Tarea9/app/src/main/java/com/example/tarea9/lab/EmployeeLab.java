@@ -13,6 +13,7 @@ import com.example.tarea9.model.Employee;
 import com.example.tarea9.model.Manager;
 import com.example.tarea9.model.Worker;
 
+import java.lang.reflect.WildcardType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -54,36 +55,100 @@ public class EmployeeLab {
 
     }
 
-    public void update(Worker worker){
+    public void update(Employee employee){
 
-        String uuidString = worker.getUUID().toString();
-        ContentValues values = getContentValues(worker);
+        String uuidString;
+        ContentValues contentValues;
 
-      int s =  mDatabase.update(EmployeeDbSchema.WorkerTable.NAME,values,
-                EmployeeDbSchema.WorkerTable.Cols.UUID+ " = ?",
-                new String []{uuidString});
+        if(employee instanceof Worker){
+
+            Worker worker = (Worker) employee;
+
+             uuidString = worker.getUUID().toString();
+             contentValues = getContentValues(worker);
+
+              mDatabase.update(EmployeeDbSchema.WorkerTable.NAME,contentValues,
+                    EmployeeDbSchema.WorkerTable.Cols.UUID+ " = ?",
+                    new String []{uuidString});
+
+        }else{
+
+            Manager manager = (Manager) employee;
+
+             uuidString = manager.getUUID().toString();
+             contentValues = getContentValues(manager);
+
+            mDatabase.update(EmployeeDbSchema.ManagerTable.NAME,contentValues,
+                    EmployeeDbSchema.ManagerTable.Cols.UUID+ " = ?",
+                    new String []{uuidString});
+
+
+        }
+
+
 
 
     }
 
-    public void delete (Worker worker) {
+    public void delete (Employee employee) {
+
+
+        if(employee instanceof  Worker){
+            Worker worker = (Worker) employee;
+
+            mDatabase.delete(EmployeeDbSchema.WorkerTable.NAME,
+                    EmployeeDbSchema.WorkerTable.Cols.UUID + "= ?",
+                    new String[]{worker.getUUID().toString()});
 
 
 
-        mDatabase.delete(EmployeeDbSchema.WorkerTable.NAME,
-                EmployeeDbSchema.WorkerTable.Cols.UUID + "= ?",
-                new String[]{worker.getUUID().toString()});
+        }else{
+
+            Manager worker = (Manager) employee;
+
+            mDatabase.delete(EmployeeDbSchema.WorkerTable.NAME,
+                    EmployeeDbSchema.WorkerTable.Cols.UUID + "= ?",
+                    new String[]{worker.getUUID().toString()});
+
+
+
+        }
+
+
 
 
     }
 
-    public Worker getEmployee(UUID uuid,String tableName,String columnName) {
+    public Manager getManager(UUID uuid) {
 
-        EmployeeCursorWrapper cursorWrapper = queryReminder(columnName + " = ?"
-                , new String[]{uuid.toString()}, tableName);
+        EmployeeCursorWrapper cursorWrapper = queryReminder(EmployeeDbSchema.ManagerTable.Cols.UUID + " = ?"
+                , new String[]{uuid.toString()}, EmployeeDbSchema.ManagerTable.NAME);
 
 
        try {
+            if (cursorWrapper.getCount() == 0) {
+                return null;
+            }
+
+            cursorWrapper.moveToFirst();
+            return cursorWrapper.getManager();
+        }finally{
+
+            cursorWrapper.close();
+
+
+        }
+
+    }
+
+
+    public Worker getWorker(UUID uuid) {
+
+        EmployeeCursorWrapper cursorWrapper = queryReminder(EmployeeDbSchema.WorkerTable.Cols.UUID + " = ?"
+                , new String[]{uuid.toString()}, EmployeeDbSchema.WorkerTable.NAME);
+
+
+        try {
             if (cursorWrapper.getCount() == 0) {
                 return null;
             }
@@ -98,6 +163,7 @@ public class EmployeeLab {
         }
 
     }
+
 
 
 
@@ -134,6 +200,10 @@ public class EmployeeLab {
 
 
     }
+
+
+
+
 
 
     public List<Manager> getManagerList(){

@@ -23,7 +23,6 @@ import androidx.fragment.app.Fragment;
 import com.example.tarea9.R;
 import com.example.tarea9.activity.WorkerActivity;
 import com.example.tarea9.activity.MainActivity;
-import com.example.tarea9.database.EmployeeDbSchema;
 import com.example.tarea9.lab.EmployeeLab;
 import com.example.tarea9.model.Worker;
 
@@ -95,8 +94,7 @@ public class WorkerFragment extends Fragment {
                 drawable = R.drawable.ic_update;
 
            UUID uuid = (UUID) getActivity().getIntent().getSerializableExtra(IDENTIFIER);
-           mWorker = EmployeeLab.getInstance(getContext()).getEmployee(uuid, EmployeeDbSchema.WorkerTable.NAME,
-                   EmployeeDbSchema.WorkerTable.Cols.UUID);
+           mWorker = EmployeeLab.getInstance(getContext()).getWorker(uuid);
 
 
             buttonText = getString(R.string.update);
