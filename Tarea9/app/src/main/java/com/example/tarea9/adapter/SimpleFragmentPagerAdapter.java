@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.example.tarea9.fragment.ManagerFragment;
+import com.example.tarea9.fragment.ManagerListFragment;
 import com.example.tarea9.fragment.WorkerListFragment;
 
 public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
@@ -23,13 +25,18 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
 
         switch (position){
-            case 1:
+            case 0:
 
                 return new WorkerListFragment();
 
 
-                default:
-                    return new WorkerListFragment();
+
+
+            case 1:
+                        return new ManagerListFragment();
+
+                        default:
+                          return null;
 
         }
 

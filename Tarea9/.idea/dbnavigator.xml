@@ -23,21 +23,22 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes />
+    <loaded-nodes>
+      <connection connection-id="e682b07f-4492-43ab-aed8-9241c51b028b">
+        <schema name="main" object-types="table, view" />
+      </connection>
+    </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="74868eb2-2f69-48c0-b983-ce24368502f0">
-      <console name="Connection" type="STANDARD" schema="main" session="Main" />
+    <connection id="e682b07f-4492-43ab-aed8-9241c51b028b">
+      <console name="Connection" type="STANDARD" schema="main" session="Main"><![CDATA[SELECT * FROM managers;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="74868eb2-2f69-48c0-b983-ce24368502f0" />
-  </component>
-  <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="74868eb2-2f69-48c0-b983-ce24368502f0" dataset="main.managers" active-filter-id="" />
+    <connection id="e682b07f-4492-43ab-aed8-9241c51b028b" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -62,7 +63,7 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="74868eb2-2f69-48c0-b983-ce24368502f0" active="true">
+      <connection id="e682b07f-4492-43ab-aed8-9241c51b028b" active="true">
         <database>
           <name value="Connection" />
           <description value="" />

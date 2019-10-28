@@ -33,7 +33,7 @@ public class EmployeeOpenHelper extends SQLiteOpenHelper {
                 + EmployeeDbSchema.ManagerTable.Cols.NAME+","+
                 EmployeeDbSchema.ManagerTable.Cols.LOCAL+","+
                 EmployeeDbSchema.ManagerTable.Cols.UUID+","+
-                EmployeeDbSchema.ManagerTable.Cols.SALARY+
+                EmployeeDbSchema.ManagerTable.Cols.SALARY+","+
                 EmployeeDbSchema.ManagerTable.Cols.DEPARTMENT+")");
 
 

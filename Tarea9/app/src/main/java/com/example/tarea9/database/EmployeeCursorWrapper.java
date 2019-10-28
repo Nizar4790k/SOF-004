@@ -39,10 +39,10 @@ public class EmployeeCursorWrapper extends CursorWrapper {
 
     public Manager getManager(){
 
-        String name = getString(getColumnIndex(EmployeeDbSchema.WorkerTable.Cols.NAME));
-        double salary = getDouble(getColumnIndex(EmployeeDbSchema.WorkerTable.Cols.SALARY));
-        UUID uuid =UUID.fromString(getString(getColumnIndex(EmployeeDbSchema.WorkerTable.Cols.UUID)));
-        String local = getString(getColumnIndex(EmployeeDbSchema.WorkerTable.Cols.LOCAL));
+        String name = getString(getColumnIndex(EmployeeDbSchema.ManagerTable.Cols.NAME));
+        double salary = getDouble(getColumnIndex(EmployeeDbSchema.ManagerTable.Cols.SALARY));
+        UUID uuid =UUID.fromString(getString(getColumnIndex(EmployeeDbSchema.ManagerTable.Cols.UUID)));
+        String local = getString(getColumnIndex(EmployeeDbSchema.ManagerTable.Cols.LOCAL));
         String department = getString(getColumnIndex(EmployeeDbSchema.ManagerTable.Cols.DEPARTMENT));
 
         Manager manager = new Manager(name,null,local,salary,uuid,department);

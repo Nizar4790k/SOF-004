@@ -3,6 +3,7 @@ package com.example.tarea9.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 
@@ -36,12 +37,60 @@ public class MainActivity extends AppCompatActivity{
 
              mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
 
+             String [] tabsNames= {
+                     getString(R.string.worker),
+                     getString(R.string.manager)
 
+             };
+
+
+             mTabLayout.addOnTabSelectedListener(new TabListener(mViewPager));
 
 
 
 
     }
+
+    private class TabListener implements TabLayout.OnTabSelectedListener {
+
+        private ViewPager mViewPager;
+
+
+
+        public TabListener(ViewPager viewPager){
+            mViewPager = viewPager;
+
+
+        }
+
+        @Override
+        public void onTabSelected(TabLayout.Tab tab) {
+
+            int position = tab.getPosition();
+
+            mViewPager.setCurrentItem(position);
+
+
+
+
+
+
+        }
+
+        @Override
+        public void onTabUnselected(TabLayout.Tab tab) {
+
+
+
+        }
+
+        @Override
+        public void onTabReselected(TabLayout.Tab tab) {
+
+        }
+    }
+
+
 
 
 

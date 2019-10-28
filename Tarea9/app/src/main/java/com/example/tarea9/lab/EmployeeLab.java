@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.EditText;
 
 import com.example.tarea9.database.EmployeeCursorWrapper;
 import com.example.tarea9.database.EmployeeDbSchema;
@@ -35,22 +36,23 @@ public class EmployeeLab {
 
     public void add(Employee employee){
 
+        ContentValues contentValues = getContentValues(employee);
         String tableName=null;
 
         if(employee instanceof Worker){
 
-
             tableName= EmployeeDbSchema.WorkerTable.NAME;
 
-
         }else{
+
+
+
             tableName= EmployeeDbSchema.ManagerTable.NAME;
+
 
         }
 
 
-
-        ContentValues contentValues =getContentValues(employee);
         mDatabase.insert(tableName,null,contentValues);
 
     }
@@ -213,7 +215,7 @@ public class EmployeeLab {
 
 
         EmployeeCursorWrapper cursorWrapper = queryReminder(null,
-                null, EmployeeDbSchema.WorkerTable.NAME);
+                null, EmployeeDbSchema.ManagerTable.NAME);
 
 
 
@@ -276,10 +278,11 @@ public class EmployeeLab {
 
             Manager manager =(Manager) employee;
             ContentValues contentValues = new ContentValues();
-            contentValues.put(EmployeeDbSchema.WorkerTable.Cols.NAME,manager.getName());
-            contentValues.put(EmployeeDbSchema.WorkerTable.Cols.SALARY,manager.getSalary());
-            contentValues.put(EmployeeDbSchema.WorkerTable.Cols.LOCAL,manager.getLocal());
-            contentValues.put(EmployeeDbSchema.WorkerTable.Cols.UUID,manager.getUUID().toString());
+            contentValues.put(EmployeeDbSchema.ManagerTable.Cols.NAME,manager.getName());
+            contentValues.put(EmployeeDbSchema.ManagerTable.Cols.SALARY,manager.getSalary());
+            contentValues.put(EmployeeDbSchema.ManagerTable.Cols.LOCAL,manager.getLocal());
+            contentValues.put(EmployeeDbSchema.ManagerTable.Cols.UUID,manager.getUUID().toString());
+            contentValues.put(EmployeeDbSchema.ManagerTable.Cols.DEPARTMENT,manager.getDeparment());
             return contentValues;
 
         }

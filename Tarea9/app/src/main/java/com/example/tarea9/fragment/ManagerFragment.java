@@ -50,17 +50,17 @@ public class ManagerFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       View view = inflater.inflate(R.layout.list_fragment,container,false);
+       View view = inflater.inflate(R.layout.manager_fragment,null,false);
 
         mNameEditText = view.findViewById(R.id.edit_text_name);
         mSalaryEditText = view.findViewById(R.id.edit_text_salary);
         mEditTextDepartment= view.findViewById(R.id.edit_text_department);
-        mSpinnerLocal = view.findViewById(R.id.spinner_local);
+        mSpinnerLocal = view.findViewById(R.id.spinner);
 
 
 
         final String[] locals = {getString(R.string.choose_local),"1","2","3","4"};
-        ArrayAdapter<String> a =new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_item, locals);
+        ArrayAdapter<String> a = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, locals);
         a.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpinnerLocal.setAdapter(a);
 
@@ -192,6 +192,7 @@ public class ManagerFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
 

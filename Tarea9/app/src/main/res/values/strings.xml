@@ -6,7 +6,7 @@
     <string name="manager">MANAGER</string>
     <string name="name">Name:</string>
     <string name="position">Position:</string>
-    <string name="salary">Salary: </string>
+    <string name="salary_hint">Salary: </string>
     <string name="hast_title">Has title</string>
     <string name="name_text_view">Name : %1$s </string>
     <string name="local_text_view">Local: %1$s</string>
@@ -15,6 +15,7 @@
     <string name="not_valid">The values are wrong or are empty</string>
     <string name="total_salary">Total Salary : %1$s</string>
     <string name="department">Department:</string>
+    <string name="salary">Salary: %1$s </string>
 
 
 </resources>

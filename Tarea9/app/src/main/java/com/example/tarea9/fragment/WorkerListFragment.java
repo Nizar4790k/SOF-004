@@ -60,7 +60,7 @@ public class WorkerListFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.main_activity,menu);
+        inflater.inflate(R.menu.list_fragment,menu);
     }
 
     @Override

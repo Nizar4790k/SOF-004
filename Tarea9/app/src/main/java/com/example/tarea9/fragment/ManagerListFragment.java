@@ -3,23 +3,26 @@ package com.example.tarea9.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tarea9.R;
 import com.example.tarea9.lab.EmployeeLab;
 import com.example.tarea9.model.Manager;
-import com.example.tarea9.model.Worker;
 
 import java.util.List;
 
-public class ManagerListFragment extends ManagerFragment {
+public class ManagerListFragment extends Fragment {
 
 
 
@@ -31,7 +34,7 @@ public class ManagerListFragment extends ManagerFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.list_fragment,container,false);
+        View view = inflater.inflate(R.layout.list_fragment,null,false);
 
 
         mRecyclerView = view.findViewById(R.id.recycler_view);
@@ -41,51 +44,52 @@ public class ManagerListFragment extends ManagerFragment {
         updateUI();
 
 
-
-
         return view;
     }
 
 
     public void updateUI(){
-        List<Manager> workerList = EmployeeLab.getInstance(getContext()).getManagerList();
 
-        ManagerListFragment.ManagerAdapter workerAdapter = new ManagerListFragment.ManagerAdapter(workerList);
+        List<Manager> managerList = EmployeeLab.getInstance(getContext()).getManagerList();
 
-        mRecyclerView.setAdapter(workerAdapter);
+
+
+        ManagerListFragment.ManagerAdapter managerAdapter = new ManagerListFragment.ManagerAdapter(managerList);
+
+        mRecyclerView.setAdapter(managerAdapter);
 
     }
 
-    private class ManagerAdapter extends RecyclerView.Adapter<WorkerListFragment.ManagerHolder>  {
+    private class ManagerAdapter extends RecyclerView.Adapter<ManagerListFragment.ManagerHolder>  {
 
-        private List<Worker> mWorkers;
+        private List<Manager> mManagers;
 
-        public ManagerAdapter(List<Worke> workers){
-            mWorkers=workers;
+        public ManagerAdapter(List<Manager> managers){
+            mManagers=managers;
         }
 
 
         @NonNull
         @Override
-        public WorkerListFragment.ManagerHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        public ManagerListFragment.ManagerHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
             LayoutInflater inflater = LayoutInflater.from(getContext());
 
-            return new WorkerListFragment.ManagerHolder(inflater,parent);
+            return new ManagerListFragment.ManagerHolder(inflater,parent);
         }
 
         @Override
-        public void onBindViewHolder(@NonNull WorkerListFragment.ManagerHolder holder, int position) {
+        public void onBindViewHolder(@NonNull ManagerListFragment.ManagerHolder holder, int position) {
 
-            Worker worker = mWorkers.get(position);
+            Manager manager = mManagers.get(position);
 
-            holder.onBind(worker);
+            holder.onBind(manager);
 
         }
 
         @Override
         public int getItemCount() {
-            return mWorkers.size();
+            return mManagers.size();
         }
 
 
@@ -118,7 +122,7 @@ public class ManagerListFragment extends ManagerFragment {
         @Override
         public void onClick(View v) {
 
-            Intent intent = WorkerFragment.newIntent(getContext(), mManager.getUUID());
+            Intent intent = ManagerFragment.newIntent(getContext(), mManager.getUUID());
             startActivity(intent);
 
 
@@ -130,7 +134,7 @@ public class ManagerListFragment extends ManagerFragment {
 
             mTextViewName.setText(getString(R.string.name_text_view,mManager.getName()));
             mTextViewLocal.setText(getString(R.string.local_text_view,String.valueOf(mManager.getLocal())));
-            mTextViewSalary.setText(String.valueOf(mManager.getSalary()));
+            mTextViewSalary.setText(getString(R.string.salary,String.valueOf(mManager.getSalary())));
 
             this.mManager =mManager;
         }
@@ -142,10 +146,35 @@ public class ManagerListFragment extends ManagerFragment {
 
 
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.list_fragment,menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
+        switch (item.getItemId()){
 
+            case R.id.add:
+
+                Intent intent = ManagerFragment.newIntent(getActivity(),null);
+                startActivity(intent);
+
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
+
+    }
 
 
 }
