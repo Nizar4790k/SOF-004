@@ -18,20 +18,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tarea9.R;
 import com.example.tarea9.activity.MainActivity;
 import com.example.tarea9.activity.ManagerActivity;
-import com.example.tarea9.activity.WorkerActivity;
-import com.example.tarea9.database.EmployeeDbSchema;
 import com.example.tarea9.lab.EmployeeLab;
 import com.example.tarea9.model.Manager;
-import com.example.tarea9.model.Worker;
 
 import java.util.UUID;
 
-public class ManagerFragment extends Fragment {
+public class ManagerFragment extends Fragment
+{
 
 
     private static String CREATOR_MODE ="CreatorMode";

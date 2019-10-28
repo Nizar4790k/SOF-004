@@ -3,7 +3,6 @@ package com.example.tarea9.database;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 
-import com.example.tarea9.model.Employee;
 import com.example.tarea9.model.Manager;
 import com.example.tarea9.model.Worker;
 
@@ -16,7 +15,8 @@ public class EmployeeCursorWrapper extends CursorWrapper {
     }
 
 
-    public Worker getWorker(){
+    public Worker getWorker()
+    {
 
         String name = getString(getColumnIndex(EmployeeDbSchema.WorkerTable.Cols.NAME));
         double salary = getDouble(getColumnIndex(EmployeeDbSchema.WorkerTable.Cols.SALARY));
@@ -37,7 +37,8 @@ public class EmployeeCursorWrapper extends CursorWrapper {
     }
 
 
-    public Manager getManager(){
+    public Manager getManager()
+    {
 
         String name = getString(getColumnIndex(EmployeeDbSchema.ManagerTable.Cols.NAME));
         double salary = getDouble(getColumnIndex(EmployeeDbSchema.ManagerTable.Cols.SALARY));

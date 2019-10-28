@@ -4,8 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-import android.widget.EditText;
 
 import com.example.tarea9.database.EmployeeCursorWrapper;
 import com.example.tarea9.database.EmployeeDbSchema;
@@ -14,7 +12,6 @@ import com.example.tarea9.model.Employee;
 import com.example.tarea9.model.Manager;
 import com.example.tarea9.model.Worker;
 
-import java.lang.reflect.WildcardType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;

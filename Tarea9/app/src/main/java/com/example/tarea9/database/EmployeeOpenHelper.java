@@ -4,9 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.tarea9.model.Employee;
-
-public class EmployeeOpenHelper extends SQLiteOpenHelper {
+public class EmployeeOpenHelper extends SQLiteOpenHelper
+{
 
 
     private static final int VERSION = 1;
@@ -18,7 +17,8 @@ public class EmployeeOpenHelper extends SQLiteOpenHelper {
 
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase db)
+    {
 
         db.execSQL("create table "+EmployeeDbSchema.WorkerTable.NAME+"("+"_id integer primary key autoincrement,"
                 + EmployeeDbSchema.WorkerTable.Cols.NAME+","+

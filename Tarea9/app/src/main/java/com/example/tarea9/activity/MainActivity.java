@@ -1,11 +1,9 @@
 package com.example.tarea9.activity;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
-
-import android.content.Context;
-import android.os.Bundle;
-import android.view.Menu;
 
 import com.example.tarea9.R;
 import com.example.tarea9.adapter.SimpleFragmentPagerAdapter;
@@ -15,7 +13,6 @@ public class MainActivity extends AppCompatActivity{
 
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
-    private String mSelectedTabName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +34,7 @@ public class MainActivity extends AppCompatActivity{
 
              mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
 
-             String [] tabsNames= {
-                     getString(R.string.worker),
-                     getString(R.string.manager)
 
-             };
 
 
              mTabLayout.addOnTabSelectedListener(new TabListener(mViewPager));

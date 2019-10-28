@@ -39,10 +39,9 @@ public class WorkerFragment extends Fragment {
    private Button mButtonAddOrCreate;
 
    private Worker mWorker;
-   private EmployeeLab mEmployeeLab;
 
 
-   private static final String CREATOR_MODE="CreatorMode";
+    private static final String CREATOR_MODE="CreatorMode";
    private static final String IDENTIFIER="Identifier";
 
 
@@ -53,8 +52,6 @@ public class WorkerFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.worker_fragment,null,false);
 
-
-        mEmployeeLab = EmployeeLab.getInstance(getContext());
 
         mEditTextName= view.findViewById(R.id.edit_text_name);
         mEditTextSalary = view.findViewById(R.id.edit_text_salary);
