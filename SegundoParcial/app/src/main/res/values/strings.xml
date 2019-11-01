@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Segundo Parcial</string>
+
+
+    <string name="clear_all">Clear all</string>
+
+    <string name="output_not_calculated">The output cannot be calculated</string>
+    <string name= "output_result1">Date of birth of the age</string>
+    <string name="output_result2">is</string>
+    <string name="output_default">The date will displayed here</string>
+    <string name="result_default">The result will displayed here</string>
+
+    <string name="give_number">Tap me and give me a number</string>
+    <string name="give_number1">Tap me and give another number</string>
+    <string name="field_empty">The fields MUST NOT be empty</string>
+    <string name="display_result">Result: </string>
+
+    <string name="addition_result">Addition: %1$s</string>
+    <string name="sustration_result">Diference: %1$s</string>
+    <string name="multiplication_result">Product: %1$s</string>
+    <string name="calculate_button">CALCULATE!!</string>
+
+</resources>
